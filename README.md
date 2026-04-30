@@ -68,18 +68,18 @@ Terminal 3: wireshark       → captura tráfico del stager en localhost
 Requiere: `g++`, `libssl-dev`. En Debian/Ubuntu:
 
 **Cómo compilar:**
-`mkdir -p build && g++ -o build/simulador src/main.cpp src/enumerator.cpp`
+
 mkdir -p build && g++ -o build/simulador src/main.cpp src/enumerator.cpp
 
 **Cómo ejecutar:**
-`./build/simulador`
+
 ./build/simulador
 
 ---
 
 ## Estructura del proyecto
 
-```
+
 SentinelEDU/
  ├── src/
  │    ├── main.cpp           # Orquestador del monitor
@@ -100,7 +100,7 @@ SentinelEDU/
  ├── logs/
  │    └── events.log         # Generado al ejecutar
  └── README.md
-```
+
 
 ---
 
