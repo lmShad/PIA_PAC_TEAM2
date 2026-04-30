@@ -1,5 +1,6 @@
 # Monitor y Simulador Benigno de Comportamiento
 Proyecto Integrador Aplicado | Equipo 2
+
 Integrantes:
 Brandon Yahir Flores Garcia
 Jonathan Emir Jacobo Martinez
