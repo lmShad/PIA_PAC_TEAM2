@@ -45,7 +45,7 @@ Programa principal que corre en una terminal y detecta en tiempo real:
 ### Simuladores ofensivos (programas separados)
 Programas cortos que se ejecutan en otra terminal y generan comportamiento
 que el monitor detecta:
-- **stager** — abre socket TCP a 127.0.0.1:8080.
+- **stager** — abre socket TCP a 127.0.0.1:8080
 - **inject_sim** — demo benigna de asignación y ejecución de memoria
   (mmap, memcpy), equivalente Linux al ejercicio de VirtualAlloc.
 - **spoof_demo** — falsea metadatos de proceso (nombre en /proc/self/comm)
