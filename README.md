@@ -2,10 +2,10 @@
 Proyecto Integrador Aplicado | Equipo 2
 
 Integrantes:
-Brandon Yahir Flores Garcia
-Jonathan Emir Jacobo Martinez
-Jose Miguel Castellanos Martinez
-Juan Carlos Fernandez Flores
+-Brandon Yahir Flores Garcia
+-Jonathan Emir Jacobo Martinez
+-Jose Miguel Castellanos Martinez
+-Juan Carlos Fernandez Flores
 
 ---
 
