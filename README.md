@@ -1,4 +1,4 @@
-# Simulador Benigno de Comportamiento (Proyecto Educativo de Ciberseguridad)
+# Simulador Benigno de Comportamiento (Proyecto Educativo de Ciberseguridad) (BORRADOR NO OFICIAL)
 
 **Objetivo del proyecto:** Desarrollar un simulador de comportamiento a nivel de sistema que emule tácticas de software malicioso de forma completamente benigna, controlada y sin persistencia, diseñado para entrenamiento en análisis estático y dinámico.
 
