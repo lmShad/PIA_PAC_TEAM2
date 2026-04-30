@@ -1,5 +1,5 @@
 # Monitor y Simulador Benigno de Comportamiento
-**Proyecto Integrador Aplicado | Ciberseguridad | Ene–Jun 2026**
+**Proyecto Integrador Aplicado |Equipo 2
 
 ---
 
@@ -36,7 +36,7 @@ Programas cortos que se ejecutan en otra terminal y generan comportamiento
 que el monitor detecta:
 - **stager** — abre socket TCP a 127.0.0.1:8080.
 - **inject_sim** — demo benigna de asignación y ejecución de memoria
-  (`mmap`, `memcpy`), equivalente Linux al ejercicio de VirtualAlloc.
+  (mmap, memcpy), equivalente Linux al ejercicio de VirtualAlloc.
 - **spoof_demo** — falsea metadatos de proceso (nombre en /proc/self/comm)
   para demostrar técnicas de evasión de forma educativa.
 
@@ -53,7 +53,7 @@ Terminal 3: wireshark       → captura tráfico del stager en localhost
 
 | Sí implementará | No implementará |
 |-----------------|----------------|
-| Enumeración de procesos vía `/proc/` | Persistencia en el sistema |
+| Enumeración de procesos vía /proc/ | Persistencia en el sistema |
 | Análisis  estático | Exfiltración de datos al exterior |
 | Hash SHA256 con OpenSSL | Cifrado o destrucción de archivos |
 | Detección de comportamiento sospechoso | Conexión a servidores externos |
@@ -65,7 +65,7 @@ Terminal 3: wireshark       → captura tráfico del stager en localhost
 
 ## Cómo compilar
 
-Requiere: `g++`, `libssl-dev`. En Debian/Ubuntu:
+Requiere: g++, libssl-dev. En Debian/Ubuntu:
 
 **Cómo compilar:**
 
@@ -108,10 +108,10 @@ SentinelEDU/
 
 | Integrante | Módulo | Descripción |
 |------------|--------|-------------|
-| Jonathan | `main.cpp`, `enumerator.cpp` | Core del monitor, enumeración de procesos vía `/proc/` |
-| José | `elf_analyzer.cpp`, `hash_engine.cpp` | Análisis estático de binarios ELF y hashing SHA256 |
-| Brandon | `stager.cpp`, `inject_sim.cpp` | Simuladores ofensivos: socket localhost e inyección benigna |
-| Carlos | `scorer.cpp`, `logger.cpp`, `spoof_demo.cpp` | Scoring de riesgo, logging y tema de spoofing |
+| Jonathan | main.cpp, enumerator.cpp | Core del monitor, enumeración de procesos vía /proc/ |
+| José | elf_analyzer.cpp, hash_engine.cpp | Análisis estático de binarios ELF y hashing SHA256 |
+| Brandon | stager.cpp, inject_sim.cpp | Simuladores ofensivos: socket localhost e inyección benigna |
+| Carlos | scorer.cpp, logger.cpp, spoof_demo.cpp | Scoring de riesgo, logging y tema de spoofing |
 
 ---
 
@@ -121,7 +121,7 @@ SentinelEDU/
 |-------------|-----|
 | g++ (C++11) | Compilador |
 | libssl-dev / OpenSSL | Hash SHA256 |
-| POSIX (dirent.h`, `unistd.h`) | Lectura de /proc/` |
+| POSIX (dirent.h, unistd.h`) | Lectura de /proc/` |
 | sys/socket.h | Stager localhost |
 | Ghidra / Radare2 / GDB | Análisis externo|
 | Wireshark | Sniffing del tráfico del stager |
