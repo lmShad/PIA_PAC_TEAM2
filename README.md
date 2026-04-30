@@ -11,7 +11,7 @@ simuladores ofensivos benignos que generan ese comportamiento de forma controlad
 Ambas partes se analizan con herramientas de ingeniería inversa, demostrando dominio
 de las Fases I–IV del curso.
 
-> **Benigno. No persistente. Sin exfiltración. Uso exclusivo en VM aislada.**
+
 
 ---
 
