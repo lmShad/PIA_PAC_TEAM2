@@ -79,7 +79,7 @@ mkdir -p build && g++ -o build/simulador src/main.cpp src/enumerator.cpp
 
 ## Estructura del proyecto
 
-
+```
 SentinelEDU/
  ├── src/
  │    ├── main.cpp           # Orquestador del monitor
@@ -100,7 +100,7 @@ SentinelEDU/
  ├── logs/
  │    └── events.log         # Generado al ejecutar
  └── README.md
-
+```
 
 ---
 
