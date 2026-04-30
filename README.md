@@ -1,5 +1,10 @@
 # Monitor y Simulador Benigno de Comportamiento
 Proyecto Integrador Aplicado | Equipo 2
+Integrantes:
+Brandon Yahir Flores Garcia
+Jonathan Emir Jacobo Martinez
+Jose Miguel Castellanos Martinez
+Juan Carlos Fernandez Flores
 
 ---
 
@@ -65,9 +70,9 @@ Terminal 3: wireshark       → captura tráfico del stager en localhost
 
 ## Cómo compilar
 
-Requiere: g++, libssl-dev. En Debian/Ubuntu:
+Requiere: g++, libssl-dev. 
 
-**Cómo compilar:**
+En Debian/Ubuntu:
 
 mkdir -p build && g++ -o build/simulador src/main.cpp src/enumerator.cpp
 
