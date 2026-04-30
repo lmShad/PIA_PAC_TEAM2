@@ -9,10 +9,10 @@
 * **NO implementará:** Mecanismos de persistencia, exfiltración de datos hacia el exterior, ni destrucción/cifrado real de archivos.
 
 **Cómo compilar:**
-`mkdir -p build && g++ -o build/simulador src/main.cpp src/enumerator.cpp`
+mkdir -p build && g++ -o build/simulador src/main.cpp src/enumerator.cpp
 
 **Cómo ejecutar:**
-`./build/simulador`
+./build/simulador
 
 **Integrantes y responsabilidades técnicas:**
 * **Jonathan :** Desarrollo core, manejo de memoria e interacción a bajo nivel con el sistema de archivos de Linux.
