@@ -67,27 +67,13 @@ Terminal 3: wireshark       → captura tráfico del stager en localhost
 
 Requiere: `g++`, `libssl-dev`. En Debian/Ubuntu:
 
-```bash
-sudo apt install g++ libssl-dev
-```
+**Cómo compilar:**
+`mkdir -p build && g++ -o build/simulador src/main.cpp src/enumerator.cpp`
+mkdir -p build && g++ -o build/simulador src/main.cpp src/enumerator.cpp
 
-Compilar monitor principal:
-```bash
-
-```
-
-
-
----
-
-## Cómo ejecutar
-
-```bash
-
-./build/stager
-
-
-```
+**Cómo ejecutar:**
+`./build/simulador`
+./build/simulador
 
 ---
 
