@@ -111,7 +111,7 @@ SentinelEDU/
 | Jonathan | `main.cpp`, `enumerator.cpp` | Core del monitor, enumeración de procesos vía `/proc/` |
 | José | `elf_analyzer.cpp`, `hash_engine.cpp` | Análisis estático de binarios ELF y hashing SHA256 |
 | Brandon | `stager.cpp`, `inject_sim.cpp` | Simuladores ofensivos: socket localhost e inyección benigna |
-| Carlos | `scorer.cpp`, `logger.cpp`, `spoof_demo.cpp` | Scoring de riesgo, logging y demo de spoofing |
+| Carlos | `scorer.cpp`, `logger.cpp`, `spoof_demo.cpp` | Scoring de riesgo, logging y tema de spoofing |
 
 ---
 
