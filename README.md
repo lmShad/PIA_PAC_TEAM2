@@ -1,5 +1,5 @@
 # Monitor y Simulador Benigno de Comportamiento
-Producto Integrador Aplicado | Equipo 2
+Producto Integrador de Aprendizaje | Equipo 2
 
 ---
 
