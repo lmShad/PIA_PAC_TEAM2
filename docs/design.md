@@ -42,7 +42,7 @@ tiempo real, demostrando ataque y defensa simultáneamente.
 | Enumerator | `enumerator.cpp` | Itera `/proc/[pid]/comm` y `/proc/[pid]/exe` | I |
 | ELF Analyzer | `elf_analyzer.cpp` | Lee `Elf64_Ehdr`, secciones, símbolos | II |
 | Hash Engine | `hash_engine.cpp` | SHA256 con OpenSSL para IOCs | I |
-| Scorer | `scorer.cpp` | Puntaje acumulado 0–100 por indicadores | III |
+| Scorer | `scorer.cpp` | Puntaje acumulado por indicadores | III |
 | Logger | `logger.cpp` | Escribe `logs/events.log` con timestamp | I |
 
 ### Simuladores ofensivos
