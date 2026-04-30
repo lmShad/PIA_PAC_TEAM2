@@ -1,5 +1,5 @@
 # Monitor y Simulador Benigno de Comportamiento
-**Proyecto Integrador Aplicado |Equipo 2
+Proyecto Integrador Aplicado | Equipo 2
 
 ---
 
