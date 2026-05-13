@@ -12,7 +12,6 @@ int main() {
     std::cout << "[*] Inject_sim - Simulador de inyección de código" << std::endl;
     std::cout << "[*] PID: " << getpid() << std::endl;
     
-    // 1. Asignar memoria ejecutable (como haría un injector)
     size_t size = 4096;
     void* exec_mem = mmap(NULL, size, 
                           PROT_READ | PROT_WRITE | PROT_EXEC,
@@ -26,13 +25,11 @@ int main() {
     
     std::cout << "[*] Memoria ejecutable asignada en: " << exec_mem << std::endl;
     
-    // 2. Copiar código a la memoria (simulando inyección)
     void (*func_ptr)() = NULL;
     memcpy(exec_mem, (void*)payload_benigno, 4096);
     
     std::cout << "[*] Código copiado a memoria (simulando inyección)" << std::endl;
     
-    // 3. Ejecutar el payload (demostración benigna)
     std::cout << "[*] Ejecutando payload inyectado..." << std::endl;
     func_ptr = (void(*)())exec_mem;
     func_ptr();
