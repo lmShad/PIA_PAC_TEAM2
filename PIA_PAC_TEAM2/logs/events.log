@@ -1,0 +1,222 @@
+
+[2026-05-15 00:52:55] [SESSION] === Monitor iniciado ===
+[2026-05-15 00:52:55] [INFO] Monitor defensivo automatizado iniciado
+[2026-05-15 00:52:55] [INFO] Fase 1: Enumeracion de procesos activos via /proc/
+[2026-05-15 00:52:55] [INFO] Procesos encontrados: 257
+[2026-05-15 00:52:55] [INFO] Fase 2: Filtrando procesos sospechosos...
+[2026-05-15 00:52:55] [ALERT] Se detectaron 5 proceso(s) sospechoso(s)
+[2026-05-15 00:52:55] [ALERT] Proceso sospechoso: migration/0 [PID: 21]
+[2026-05-15 00:52:55] [INFO] Ejecutando auditoria profunda en RAM para PID: 21
+[2026-05-15 00:52:55] [ALERT] Score: 45/100 [MEDIO] - migration/0
+[2026-05-15 00:52:55] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 00:52:55] [ALERT] Proceso sospechoso: idle_inject/0 [PID: 22]
+[2026-05-15 00:52:55] [INFO] Ejecutando auditoria profunda en RAM para PID: 22
+[2026-05-15 00:52:55] [ALERT] Score: 45/100 [MEDIO] - idle_inject/0
+[2026-05-15 00:52:55] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 00:52:55] [ALERT] Proceso sospechoso: idle_inject/1 [PID: 25]
+[2026-05-15 00:52:55] [INFO] Ejecutando auditoria profunda en RAM para PID: 25
+[2026-05-15 00:52:55] [ALERT] Score: 45/100 [MEDIO] - idle_inject/1
+[2026-05-15 00:52:55] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 00:52:55] [ALERT] Proceso sospechoso: migration/1 [PID: 26]
+[2026-05-15 00:52:55] [INFO] Ejecutando auditoria profunda en RAM para PID: 26
+[2026-05-15 00:52:55] [ALERT] Score: 45/100 [MEDIO] - migration/1
+[2026-05-15 00:52:55] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 00:52:55] [ALERT] Proceso sospechoso: inject [PID: 1834]
+[2026-05-15 00:52:55] [INFO] Ejecutando auditoria profunda en RAM para PID: 1834
+[2026-05-15 00:52:55] [ALERT] Score: 45/100 [MEDIO] - inject
+[2026-05-15 00:52:55] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 00:52:55] [INFO] Monitor finalizado - 5 alerta(s) generada(s)
+
+[2026-05-15 00:54:44] [SESSION] === Monitor iniciado ===
+[2026-05-15 00:54:44] [INFO] Monitor defensivo automatizado iniciado
+[2026-05-15 00:54:44] [INFO] Fase 1: Enumeracion de procesos activos via /proc/
+[2026-05-15 00:54:44] [INFO] Procesos encontrados: 287
+[2026-05-15 00:54:44] [INFO] Fase 2: Filtrando procesos sospechosos...
+[2026-05-15 00:54:44] [ALERT] Se detectaron 4 proceso(s) sospechoso(s)
+[2026-05-15 00:54:44] [ALERT] Proceso sospechoso: migration/0 [PID: 21]
+[2026-05-15 00:54:44] [INFO] Ejecutando auditoria profunda en RAM para PID: 21
+[2026-05-15 00:54:44] [ALERT] Score: 45/100 [MEDIO] - migration/0
+[2026-05-15 00:54:44] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 00:54:44] [ALERT] Proceso sospechoso: idle_inject/0 [PID: 22]
+[2026-05-15 00:54:44] [INFO] Ejecutando auditoria profunda en RAM para PID: 22
+[2026-05-15 00:54:44] [ALERT] Score: 45/100 [MEDIO] - idle_inject/0
+[2026-05-15 00:54:44] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 00:54:44] [ALERT] Proceso sospechoso: idle_inject/1 [PID: 25]
+[2026-05-15 00:54:44] [INFO] Ejecutando auditoria profunda en RAM para PID: 25
+[2026-05-15 00:54:44] [ALERT] Score: 45/100 [MEDIO] - idle_inject/1
+[2026-05-15 00:54:44] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 00:54:44] [ALERT] Proceso sospechoso: migration/1 [PID: 26]
+[2026-05-15 00:54:44] [INFO] Ejecutando auditoria profunda en RAM para PID: 26
+[2026-05-15 00:54:44] [ALERT] Score: 45/100 [MEDIO] - migration/1
+[2026-05-15 00:54:44] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 00:54:44] [INFO] Monitor finalizado - 4 alerta(s) generada(s)
+
+[2026-05-15 00:56:26] [SESSION] === Monitor iniciado ===
+[2026-05-15 00:56:26] [INFO] Monitor defensivo automatizado iniciado
+[2026-05-15 00:56:26] [INFO] Fase 1: Enumeracion de procesos activos via /proc/
+[2026-05-15 00:56:26] [INFO] Procesos encontrados: 289
+[2026-05-15 00:56:26] [INFO] Fase 2: Filtrando procesos sospechosos...
+[2026-05-15 00:56:26] [ALERT] Se detectaron 4 proceso(s) sospechoso(s)
+[2026-05-15 00:56:26] [ALERT] Proceso sospechoso: migration/0 [PID: 21]
+[2026-05-15 00:56:26] [INFO] Ejecutando auditoria profunda en RAM para PID: 21
+[2026-05-15 00:56:26] [ALERT] Score: 45/100 [MEDIO] - migration/0
+[2026-05-15 00:56:26] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 00:56:26] [ALERT] Proceso sospechoso: idle_inject/0 [PID: 22]
+[2026-05-15 00:56:26] [INFO] Ejecutando auditoria profunda en RAM para PID: 22
+[2026-05-15 00:56:26] [ALERT] Score: 45/100 [MEDIO] - idle_inject/0
+[2026-05-15 00:56:26] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 00:56:26] [ALERT] Proceso sospechoso: idle_inject/1 [PID: 25]
+[2026-05-15 00:56:26] [INFO] Ejecutando auditoria profunda en RAM para PID: 25
+[2026-05-15 00:56:26] [ALERT] Score: 45/100 [MEDIO] - idle_inject/1
+[2026-05-15 00:56:26] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 00:56:26] [ALERT] Proceso sospechoso: migration/1 [PID: 26]
+[2026-05-15 00:56:26] [INFO] Ejecutando auditoria profunda en RAM para PID: 26
+[2026-05-15 00:56:26] [ALERT] Score: 45/100 [MEDIO] - migration/1
+[2026-05-15 00:56:26] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 00:56:26] [INFO] Monitor finalizado - 4 alerta(s) generada(s)
+
+[2026-05-15 00:59:46] [SESSION] === Monitor iniciado ===
+[2026-05-15 00:59:46] [INFO] Monitor defensivo automatizado iniciado
+[2026-05-15 00:59:46] [INFO] Fase 1: Enumeracion de procesos activos via /proc/
+[2026-05-15 00:59:46] [INFO] Procesos encontrados: 274
+[2026-05-15 00:59:46] [INFO] Fase 2: Filtrando procesos sospechosos...
+[2026-05-15 00:59:46] [ALERT] Se detectaron 6 proceso(s) sospechoso(s)
+[2026-05-15 00:59:46] [ALERT] Proceso sospechoso: migration/0 [PID: 21]
+[2026-05-15 00:59:46] [INFO] Ejecutando auditoria profunda en RAM para PID: 21
+[2026-05-15 00:59:46] [ALERT] Score: 45/100 [MEDIO] - migration/0
+[2026-05-15 00:59:46] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 00:59:46] [ALERT] Proceso sospechoso: idle_inject/0 [PID: 22]
+[2026-05-15 00:59:46] [INFO] Ejecutando auditoria profunda en RAM para PID: 22
+[2026-05-15 00:59:46] [ALERT] Score: 45/100 [MEDIO] - idle_inject/0
+[2026-05-15 00:59:46] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 00:59:46] [ALERT] Proceso sospechoso: idle_inject/1 [PID: 25]
+[2026-05-15 00:59:46] [INFO] Ejecutando auditoria profunda en RAM para PID: 25
+[2026-05-15 00:59:46] [ALERT] Score: 45/100 [MEDIO] - idle_inject/1
+[2026-05-15 00:59:46] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 00:59:46] [ALERT] Proceso sospechoso: migration/1 [PID: 26]
+[2026-05-15 00:59:46] [INFO] Ejecutando auditoria profunda en RAM para PID: 26
+[2026-05-15 00:59:46] [ALERT] Score: 45/100 [MEDIO] - migration/1
+[2026-05-15 00:59:46] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 00:59:46] [ALERT] Proceso sospechoso: stager_raw [PID: 2380]
+[2026-05-15 00:59:46] [INFO] Calculando SHA256 de: /home/brandon/Escritorio/PIA_PAC_TEAM2/PIA_PAC_TEAM2/build/stager_raw
+[2026-05-15 00:59:46] [INFO] SHA256: ba849cebf865f18cebee98ce05958325288f067ca8c2261670450d43ed27fe99
+[2026-05-15 00:59:46] [INFO] Analizando ELF: /home/brandon/Escritorio/PIA_PAC_TEAM2/PIA_PAC_TEAM2/build/stager_raw
+[2026-05-15 00:59:46] [INFO] ELF tipo: DYN (Shared object / PIE), secciones: 29
+[2026-05-15 00:59:46] [WARNING] Simbolos de red detectados en stager_raw
+[2026-05-15 00:59:46] [INFO] Ejecutando auditoria profunda en RAM para PID: 2380
+[2026-05-15 00:59:46] [ALERT] ¡ALERTA CRÍTICA! Infeccion Fileless detectada en RAM - PID: 2380
+[2026-05-15 00:59:46] [ALERT] Score: 80/100 [ALTO] - stager_raw
+[2026-05-15 00:59:46] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'stager' (+15); simbolos de red detectados (+25); secciones notables en ELF (+10); 
+[2026-05-15 00:59:46] [ALERT] Proceso sospechoso: inject_raw [PID: 2545]
+[2026-05-15 00:59:46] [INFO] Calculando SHA256 de: /home/brandon/Escritorio/PIA_PAC_TEAM2/PIA_PAC_TEAM2/build/inject_raw
+[2026-05-15 00:59:46] [INFO] SHA256: 74643cfb878bf095804beac6d71061577cc8c86e910a26b6f8f476a5d1387fd8
+[2026-05-15 00:59:46] [INFO] Analizando ELF: /home/brandon/Escritorio/PIA_PAC_TEAM2/PIA_PAC_TEAM2/build/inject_raw
+[2026-05-15 00:59:46] [INFO] ELF tipo: DYN (Shared object / PIE), secciones: 30
+[2026-05-15 00:59:46] [WARNING] Simbolos de ejecucion/memoria detectados en inject_raw
+[2026-05-15 00:59:46] [INFO] Ejecutando auditoria profunda en RAM para PID: 2545
+[2026-05-15 00:59:46] [ALERT] ¡ALERTA CRÍTICA! Infeccion Fileless detectada en RAM - PID: 2545
+[2026-05-15 00:59:46] [ALERT] Score: 75/100 [ALTO] - inject_raw
+[2026-05-15 00:59:46] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); simbolos de ejecucion/memoria (+20); secciones notables en ELF (+10); 
+[2026-05-15 00:59:46] [INFO] Monitor finalizado - 6 alerta(s) generada(s)
+
+[2026-05-15 01:06:20] [SESSION] === Monitor iniciado ===
+[2026-05-15 01:06:20] [INFO] Monitor defensivo automatizado iniciado
+[2026-05-15 01:06:20] [INFO] Fase 1: Enumeracion de procesos activos via /proc/
+[2026-05-15 01:06:20] [INFO] Procesos encontrados: 272
+[2026-05-15 01:06:20] [INFO] Fase 2: Filtrando procesos sospechosos...
+[2026-05-15 01:06:20] [ALERT] Se detectaron 6 proceso(s) sospechoso(s)
+[2026-05-15 01:06:20] [ALERT] Proceso sospechoso: migration/0 [PID: 21]
+[2026-05-15 01:06:20] [INFO] Ejecutando auditoria profunda en RAM para PID: 21
+[2026-05-15 01:06:20] [ALERT] Score: 45/100 [MEDIO] - migration/0
+[2026-05-15 01:06:20] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 01:06:20] [ALERT] Proceso sospechoso: idle_inject/0 [PID: 22]
+[2026-05-15 01:06:20] [INFO] Ejecutando auditoria profunda en RAM para PID: 22
+[2026-05-15 01:06:20] [ALERT] Score: 45/100 [MEDIO] - idle_inject/0
+[2026-05-15 01:06:20] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 01:06:20] [ALERT] Proceso sospechoso: idle_inject/1 [PID: 25]
+[2026-05-15 01:06:20] [INFO] Ejecutando auditoria profunda en RAM para PID: 25
+[2026-05-15 01:06:20] [ALERT] Score: 45/100 [MEDIO] - idle_inject/1
+[2026-05-15 01:06:20] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 01:06:20] [ALERT] Proceso sospechoso: migration/1 [PID: 26]
+[2026-05-15 01:06:20] [INFO] Ejecutando auditoria profunda en RAM para PID: 26
+[2026-05-15 01:06:20] [ALERT] Score: 45/100 [MEDIO] - migration/1
+[2026-05-15 01:06:20] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 01:06:20] [ALERT] Proceso sospechoso: stager_raw [PID: 2380]
+[2026-05-15 01:06:20] [INFO] Calculando SHA256 de: /home/brandon/Escritorio/PIA_PAC_TEAM2/PIA_PAC_TEAM2/build/stager_raw
+[2026-05-15 01:06:20] [INFO] SHA256: ba849cebf865f18cebee98ce05958325288f067ca8c2261670450d43ed27fe99
+[2026-05-15 01:06:20] [INFO] Analizando ELF: /home/brandon/Escritorio/PIA_PAC_TEAM2/PIA_PAC_TEAM2/build/stager_raw
+[2026-05-15 01:06:20] [INFO] ELF tipo: DYN (Shared object / PIE), secciones: 29
+[2026-05-15 01:06:20] [WARNING] Simbolos de red detectados en stager_raw
+[2026-05-15 01:06:20] [INFO] Ejecutando auditoria profunda en RAM para PID: 2380
+[2026-05-15 01:06:20] [ALERT] ¡ALERTA CRÍTICA! Infeccion Fileless detectada en RAM - PID: 2380
+[2026-05-15 01:06:20] [ALERT] Score: 80/100 [ALTO] - stager_raw
+[2026-05-15 01:06:20] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'stager' (+15); simbolos de red detectados (+25); secciones notables en ELF (+10); 
+[2026-05-15 01:06:20] [ALERT] Proceso sospechoso: inject_raw [PID: 2545]
+[2026-05-15 01:06:20] [INFO] Calculando SHA256 de: /home/brandon/Escritorio/PIA_PAC_TEAM2/PIA_PAC_TEAM2/build/inject_raw
+[2026-05-15 01:06:20] [INFO] SHA256: 74643cfb878bf095804beac6d71061577cc8c86e910a26b6f8f476a5d1387fd8
+[2026-05-15 01:06:20] [INFO] Analizando ELF: /home/brandon/Escritorio/PIA_PAC_TEAM2/PIA_PAC_TEAM2/build/inject_raw
+[2026-05-15 01:06:20] [INFO] ELF tipo: DYN (Shared object / PIE), secciones: 30
+[2026-05-15 01:06:20] [WARNING] Simbolos de ejecucion/memoria detectados en inject_raw
+[2026-05-15 01:06:20] [INFO] Ejecutando auditoria profunda en RAM para PID: 2545
+[2026-05-15 01:06:20] [ALERT] ¡ALERTA CRÍTICA! Infeccion Fileless detectada en RAM - PID: 2545
+[2026-05-15 01:06:20] [ALERT] Score: 75/100 [ALTO] - inject_raw
+[2026-05-15 01:06:20] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); simbolos de ejecucion/memoria (+20); secciones notables en ELF (+10); 
+[2026-05-15 01:06:20] [INFO] Monitor finalizado - 6 alerta(s) generada(s)
+
+[2026-05-15 01:06:34] [SESSION] === Monitor iniciado ===
+[2026-05-15 01:06:34] [INFO] Monitor defensivo automatizado iniciado
+[2026-05-15 01:06:34] [INFO] Fase 1: Enumeracion de procesos activos via /proc/
+[2026-05-15 01:06:34] [INFO] Procesos encontrados: 270
+[2026-05-15 01:06:34] [INFO] Fase 2: Filtrando procesos sospechosos...
+[2026-05-15 01:06:34] [ALERT] Se detectaron 5 proceso(s) sospechoso(s)
+[2026-05-15 01:06:34] [ALERT] Proceso sospechoso: migration/0 [PID: 21]
+[2026-05-15 01:06:34] [INFO] Ejecutando auditoria profunda en RAM para PID: 21
+[2026-05-15 01:06:34] [ALERT] Score: 45/100 [MEDIO] - migration/0
+[2026-05-15 01:06:34] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 01:06:34] [ALERT] Proceso sospechoso: idle_inject/0 [PID: 22]
+[2026-05-15 01:06:34] [INFO] Ejecutando auditoria profunda en RAM para PID: 22
+[2026-05-15 01:06:34] [ALERT] Score: 45/100 [MEDIO] - idle_inject/0
+[2026-05-15 01:06:34] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 01:06:34] [ALERT] Proceso sospechoso: idle_inject/1 [PID: 25]
+[2026-05-15 01:06:34] [INFO] Ejecutando auditoria profunda en RAM para PID: 25
+[2026-05-15 01:06:34] [ALERT] Score: 45/100 [MEDIO] - idle_inject/1
+[2026-05-15 01:06:34] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 01:06:34] [ALERT] Proceso sospechoso: migration/1 [PID: 26]
+[2026-05-15 01:06:34] [INFO] Ejecutando auditoria profunda en RAM para PID: 26
+[2026-05-15 01:06:34] [ALERT] Score: 45/100 [MEDIO] - migration/1
+[2026-05-15 01:06:34] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 01:06:34] [ALERT] Proceso sospechoso: inject_raw [PID: 2545]
+[2026-05-15 01:06:34] [INFO] Calculando SHA256 de: /home/brandon/Escritorio/PIA_PAC_TEAM2/PIA_PAC_TEAM2/build/inject_raw
+[2026-05-15 01:06:34] [INFO] SHA256: 74643cfb878bf095804beac6d71061577cc8c86e910a26b6f8f476a5d1387fd8
+[2026-05-15 01:06:34] [INFO] Analizando ELF: /home/brandon/Escritorio/PIA_PAC_TEAM2/PIA_PAC_TEAM2/build/inject_raw
+[2026-05-15 01:06:34] [INFO] ELF tipo: DYN (Shared object / PIE), secciones: 30
+[2026-05-15 01:06:34] [WARNING] Simbolos de ejecucion/memoria detectados en inject_raw
+[2026-05-15 01:06:34] [INFO] Ejecutando auditoria profunda en RAM para PID: 2545
+[2026-05-15 01:06:34] [ALERT] ¡ALERTA CRÍTICA! Infeccion Fileless detectada en RAM - PID: 2545
+[2026-05-15 01:06:34] [ALERT] Score: 75/100 [ALTO] - inject_raw
+[2026-05-15 01:06:34] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); simbolos de ejecucion/memoria (+20); secciones notables en ELF (+10); 
+[2026-05-15 01:06:34] [INFO] Monitor finalizado - 5 alerta(s) generada(s)
+
+[2026-05-15 01:07:13] [SESSION] === Monitor iniciado ===
+[2026-05-15 01:07:13] [INFO] Monitor defensivo automatizado iniciado
+[2026-05-15 01:07:13] [INFO] Fase 1: Enumeracion de procesos activos via /proc/
+[2026-05-15 01:07:13] [INFO] Procesos encontrados: 266
+[2026-05-15 01:07:13] [INFO] Fase 2: Filtrando procesos sospechosos...
+[2026-05-15 01:07:13] [ALERT] Se detectaron 4 proceso(s) sospechoso(s)
+[2026-05-15 01:07:13] [ALERT] Proceso sospechoso: migration/0 [PID: 21]
+[2026-05-15 01:07:13] [INFO] Ejecutando auditoria profunda en RAM para PID: 21
+[2026-05-15 01:07:13] [ALERT] Score: 45/100 [MEDIO] - migration/0
+[2026-05-15 01:07:13] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 01:07:13] [ALERT] Proceso sospechoso: idle_inject/0 [PID: 22]
+[2026-05-15 01:07:13] [INFO] Ejecutando auditoria profunda en RAM para PID: 22
+[2026-05-15 01:07:13] [ALERT] Score: 45/100 [MEDIO] - idle_inject/0
+[2026-05-15 01:07:13] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 01:07:13] [ALERT] Proceso sospechoso: idle_inject/1 [PID: 25]
+[2026-05-15 01:07:13] [INFO] Ejecutando auditoria profunda en RAM para PID: 25
+[2026-05-15 01:07:13] [ALERT] Score: 45/100 [MEDIO] - idle_inject/1
+[2026-05-15 01:07:13] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'inject' (+15); 
+[2026-05-15 01:07:13] [ALERT] Proceso sospechoso: migration/1 [PID: 26]
+[2026-05-15 01:07:13] [INFO] Ejecutando auditoria profunda en RAM para PID: 26
+[2026-05-15 01:07:13] [ALERT] Score: 45/100 [MEDIO] - migration/1
+[2026-05-15 01:07:13] [INFO] Detalle: nombre sospechoso (+30); coincide con patron 'rat' (+15); 
+[2026-05-15 01:07:13] [INFO] Monitor finalizado - 4 alerta(s) generada(s)
