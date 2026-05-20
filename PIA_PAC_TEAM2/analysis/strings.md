@@ -2,7 +2,7 @@
 
 El siguiente análisis documenta la fase inicial de ingeniería inversa estática realizada sobre el binario inyector, priorizando la identificación de su comportamiento operativo y las interfaces de comunicación con el Kernel de Linux.
 
-## 5.1. Extracción de Strings Relevantes
+##  Extracción de Strings Relevantes
 
 A través del análisis de las secciones de datos del binario (ej. `.rodata`), se identificaron cadenas de texto hardcodeadas que revelan el flujo de ejecución diseñado por el autor. No se listan todas las cadenas, sino exclusivamente aquellas con valor táctico para entender las fases del ataque:
 
@@ -12,7 +12,7 @@ A través del análisis de las secciones de datos del binario (ej. `.rodata`), s
 * `"[+] RIP actual: "` -> Revela la intención de leer los registros del CPU, específicamente el *Instruction Pointer*, para ubicar el punto exacto de inyección en memoria.
 * `"[+] Liberando proceso. El flujo de ejecución ha sido comprometido."` -> Cadena final que indica el desprendimiento (*detach*) del proceso víctima.
 
-## 5.2. Identificación de Funciones Clave
+##  Identificación de Funciones Clave
 
 El desensamblado del binario en Ghidra revela dependencias directas con la librería estándar de C y llamadas al sistema críticas para la manipulación de procesos:
 
@@ -20,7 +20,7 @@ El desensamblado del binario en Ghidra revela dependencias directas con la libre
 * **`<EXTERNAL>::wait`** (o `waitpid`): Utilizada inmediatamente después del intento de anclaje para pausar la ejecución del inyector hasta que el sistema operativo confirme que el proceso víctima ha cambiado de estado (ej. se ha detenido).
 * **`<EXTERNAL>::std::ostream::operator<<`**: Revela que el binario fue compilado en C++ (uso de `std::cout` y `std::cerr` para la salida de mensajes por consola en lugar del `printf` estándar de C).
 
-## 5.3. Notas de Ingeniería Inversa (Flujo de Ejecución)
+## Notas de Ingeniería Inversa (Flujo de Ejecución)
 
 El análisis del *Function Graph* y la descompilación permiten establecer el siguiente flujo operativo a nivel de arquitectura x64:
 
