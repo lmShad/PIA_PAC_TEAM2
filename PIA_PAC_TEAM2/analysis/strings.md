@@ -1,4 +1,4 @@
-# 5. Análisis Preliminar (Reversing)
+# Análisis Preliminar (Reversing)
 
 El siguiente análisis documenta la fase inicial de ingeniería inversa estática realizada sobre el binario inyector, priorizando la identificación de su comportamiento operativo y las interfaces de comunicación con el Kernel de Linux.
 
