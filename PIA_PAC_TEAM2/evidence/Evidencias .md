@@ -19,7 +19,7 @@ Aquí validamos que el proceso inyector es capaz de secuestrar al proceso vícti
 
 Para verificar la estructura del binario, realizamos un análisis en Ghidra.
 
-* **[Imagen 3: Análisis en Ghidra](Caps/InicioG)**
+* **[Imagen 3: Análisis en Ghidra](PIA_PAC_TEAM2/evidence/Caps/InicioG.png)**
 
 *Contexto:* Mediante la vista del descompilador, se rastreó la lógica de ejecución del binario identificando las cadenas de texto  correspondientes  que confirman la fase de preparación del proceso objetivo . Esto confirma que el payload no está ofuscado y su flujo de ejecución es completamente auditable.
 
