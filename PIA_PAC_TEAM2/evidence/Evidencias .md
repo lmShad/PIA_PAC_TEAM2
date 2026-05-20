@@ -11,7 +11,7 @@ Aquí validamos que el proceso inyector es capaz de secuestrar al proceso vícti
 * **[Imagen 1: Ejecución del Ataque](Caps/Monitor.png)**
 *Contexto:* Se observa la terminal del `target` esperando la interrupción y el `injector` confirmando el secuestro del PID 5022.
 
-* **[Imagen 2: Detección del Monitor](Caps/Monitor.png)**
+* **[Imagen 2: Detección del Monitor](Caps/Ataque.png)**
 *Contexto:* Captura del monitor defensivo donde se evidencia la alerta crítica (Score 75/100) tras detectar el bucle `EB FE` (Loop Infinito) en la memoria RAM del proceso infectado.
 
 ---
