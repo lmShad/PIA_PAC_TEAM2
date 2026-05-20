@@ -8,7 +8,7 @@ Esta sección documenta de manera gráfica las pruebas realizadas para validar t
 
 Aquí validamos que el proceso inyector es capaz de secuestrar al proceso víctima (`target_raw`) mediante la manipulación de hilos.
 
-* **[Imagen 1: Ejecución del Ataque](../images/ataque.png)**
+* **[Imagen 1: Ejecución del Ataque](Caps/Captura de pantalla 2026-05-20 020839.png)**
 *Contexto:* Se observa la terminal del `target` esperando la interrupción y el `injector` confirmando el secuestro del PID 5022.
 
 * **[Imagen 2: Detección del Monitor](../images/deteccion.png)**
