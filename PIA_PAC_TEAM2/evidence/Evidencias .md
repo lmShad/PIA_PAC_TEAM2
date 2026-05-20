@@ -27,7 +27,7 @@ Para verificar la estructura del binario, realizamos un análisis en Ghidra.
 
 Para entender qué está pasando realmente en el Kernel, utilizamos `strace` para trazar las llamadas al sistema.
 
-* **[Imagen 4: Log de Syscalls](../images/strace_log.png)**
+* **[Imagen 4: Log de Syscalls](Caps/Resultado.png)**
 
 *Contexto:* Evidencia irrefutable de la inyección. Se aprecia la secuencia de `PTRACE_ATTACH` seguida de `PTRACE_POKETEXT`.
 
