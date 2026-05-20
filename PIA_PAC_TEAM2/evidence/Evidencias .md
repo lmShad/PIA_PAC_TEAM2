@@ -8,9 +8,11 @@ Esta sección documenta de manera gráfica las pruebas realizadas para validar t
 
 Aquí validamos que el proceso inyector es capaz de secuestrar al proceso víctima (`target_raw`) mediante la manipulación de hilos.
 
-* **[Imagen 1: Ejecución del Ataque](Caps/Captura de pantalla 2026-05-20 020839.png)** *Contexto:* Se observa la terminal del `target` esperando la interrupción y el `injector` confirmando el secuestro del PID 5022.
+* **[Imagen 1: Ejecución del Ataque](../images/ataque.png)**
+*Contexto:* Se observa la terminal del `target` esperando la interrupción y el `injector` confirmando el secuestro del PID 5022.
 
-* **[Imagen 2: Detección del Monitor](Caps/Captura de pantalla 2026-05-20 020728.png)** *Contexto:* Captura del monitor defensivo donde se evidencia la alerta crítica (Score 75/100) tras detectar el bucle `EB FE` (Loop Infinito) en la memoria RAM del proceso infectado.
+* **[Imagen 2: Detección del Monitor](../images/deteccion.png)**
+*Contexto:* Captura del monitor defensivo donde se evidencia la alerta crítica (Score 75/100) tras detectar el bucle `EB FE` (Loop Infinito) en la memoria RAM del proceso infectado.
 
 ---
 
@@ -18,7 +20,8 @@ Aquí validamos que el proceso inyector es capaz de secuestrar al proceso vícti
 
 Para verificar la estructura del binario, realizamos un análisis de reversa utilizando Ghidra.
 
-* **[Imagen 3: Análisis en Ghidra](images/ghidra_reversing.png)** *Contexto:* Se identificó la función `main` y las llamadas a la librería `ptrace`, confirmando que el binario es auditable.
+* **[Imagen 3: Análisis en Ghidra](../images/ghidra_reversing.png)**
+*Contexto:* Se identificó la función `main` y las llamadas a la librería `ptrace`, confirmando que el binario es auditable.
 
 ---
 
@@ -26,7 +29,8 @@ Para verificar la estructura del binario, realizamos un análisis de reversa uti
 
 Para entender qué está pasando realmente en el Kernel, utilizamos `strace` para trazar las llamadas al sistema.
 
-* **[Imagen 4: Log de Syscalls](images/strace_log.png)** *Contexto:* Evidencia irrefutable de la inyección. Se aprecia la secuencia de `PTRACE_ATTACH` seguida de `PTRACE_POKETEXT`.
+* **[Imagen 4: Log de Syscalls](../images/strace_log.png)**
+*Contexto:* Evidencia irrefutable de la inyección. Se aprecia la secuencia de `PTRACE_ATTACH` seguida de `PTRACE_POKETEXT`.
 
 ---
 
