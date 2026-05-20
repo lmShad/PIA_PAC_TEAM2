@@ -15,21 +15,20 @@ Aquí validamos que el proceso inyector es capaz de secuestrar al proceso vícti
 *Contexto:* Captura del monitor defensivo donde se evidencia la alerta crítica (Score 75/100) tras detectar el bucle `EB FE` (Loop Infinito) en la memoria RAM del proceso infectado.
 
 ---
+## 2. Análisis Estático 
 
-## 2. Análisis Estático (Ingeniería Inversa)
+Para verificar la estructura del binario, realizamos un análisis en Ghidra.
 
-Para verificar la estructura del binario, realizamos un análisis de reversa utilizando Ghidra.
+* **[Imagen 3: Análisis en Ghidra](Caps/InicioG)**
 
-* **[Imagen 3: Análisis en Ghidra](../images/ghidra_reversing.png)**
-*Contexto:* Se identificó la función `main` y las llamadas a la librería `ptrace`, confirmando que el binario es auditable.
-
----
+*Contexto:* Mediante la vista del descompilador, se rastreó la lógica de ejecución del binario identificando las cadenas de texto  correspondientes  que confirman la fase de preparación del proceso objetivo . Esto confirma que el payload no está ofuscado y su flujo de ejecución es completamente auditable.
 
 ## 3. Análisis de Comportamiento (Syscalls)
 
 Para entender qué está pasando realmente en el Kernel, utilizamos `strace` para trazar las llamadas al sistema.
 
 * **[Imagen 4: Log de Syscalls](../images/strace_log.png)**
+
 *Contexto:* Evidencia irrefutable de la inyección. Se aprecia la secuencia de `PTRACE_ATTACH` seguida de `PTRACE_POKETEXT`.
 
 ---
