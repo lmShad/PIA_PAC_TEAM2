@@ -180,8 +180,8 @@ PIA_PAC_TEAM2/
 
 ## Recursos
 
-- **Reporte Final:** [Enlace al reporte completo](#)
-- **Video de Demostración:** [https://youtu.be/UNxeD3vQqKc](#)
+
+- **Video de Demostración:** https://youtu.be/UNxeD3vQqKc
 
 ---
 
