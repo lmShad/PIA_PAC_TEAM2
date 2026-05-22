@@ -29,6 +29,7 @@ Este componente simula la apertura de un canal de comunicación benigno simuland
 
 # -----------------------------------------
 
+
 [] Este programa simula un stager benigno.
 
 [] Abre un socket TCP en 127.0.0.1:8080
@@ -104,6 +105,7 @@ Demuestra una técnica educativa de evasión donde un proceso manipula su estruc
 
 # -----------------------------------------
 
+
 [] Este programa demuestra como un proceso puede
 
 [] falsear su propio nombre en /proc/self/comm.
@@ -112,26 +114,42 @@ Demuestra una técnica educativa de evasión donde un proceso manipula su estruc
 
 
 [] PID actual: 7359
+
 [] Nombre original: spoof_sys
 
 [1] Falseando nombre a: 'systemd-helper'
+
 [+] prctl(PR_SET_NAME) exitoso.
+
 [+] Nombre en /proc/self/comm ahora es: 'systemd-helper'
 
 [2] Verificacion:
+
 Nombre real del binario: spoof_sys
+
 Nombre reportado en /proc: systemd-helper
+
 PID: 7359
 
+
 [] Un monitor que solo lea /proc/[pid]/comm veria 'systemd-helper'
+
 [] Pero /proc/[pid]/exe seguiria apuntando al binario real.
+
 [] Esta es la razon por la que el monitor defensivo lee AMBOS.
+
 [] Proceso activo con nombre falseado (Ctrl+C para salir)...
+
 [*] Ejecuta ./simulador en otra terminal para ver si lo detecta.
+
 ^C
+
 [3] Restaurando nombre original...
+
 [+] Nombre restaurado a: spoof_sys
+
 [+] Spoof finalizado.
+
 
 
 ## Auditoría del Monitor Defensivo (`simulador_sys`)
@@ -142,26 +160,35 @@ El Monitor Defensivo v2.0 (EDR Híbrido) realiza un análisis en dos fases: aná
 
 ### Resumen del Análisis
 
-==========================================
-PIA PAC TEAM 2 - Monitor Defensivo v2.0
-EDR Híbrido: Estático + Dinámico (RAM)
-==========================================
+# -----------------------------------------
+
+# PIA PAC TEAM 2 - Monitor Defensivo v2.0
+
+# EDR Híbrido: Estático + Dinámico (RAM)
+
+# -----------------------------------------
 
 [2026-05-22 02:42:49] [INFO] Monitor defensivo automatizado iniciado
+
 [2026-05-22 02:42:49] [INFO] Fase 1: Enumeración de procesos activos via /proc/
+
 [2026-05-22 02:42:49] [INFO] Procesos encontrados: 258
+
 [2026-05-22 02:42:49] [INFO] Fase 2: Filtrando procesos sospechosos...
+
 [2026-05-22 02:42:49] [ALERT] Se detectaron 6 proceso(s) sospechoso(s)
 
 
 #### Hallazgos Principales Detallados
 
 **Detección de Falsos Positivos del Sistema / Nombres Sospechosos:**
+
 El EDR detectó procesos legítimos del kernel de Linux (`migration`, `idle_inject`) debido a que contienen patrones heurísticos de alerta preconfigurados (como `rat` o `inject`), asignándoles un riesgo de 45/100 **MEDIO**.
 
 > *Nota: Al no correr el monitor con sudo, saltó un error esperado al intentar acceder a los descriptores de memoria RAM de estos procesos).*
 
 **Incidente Crítico - Infección Fileless (`stager_sys`):**
+
 El EDR detectó exitosamente el binario del stager activo bajo el PID 7366, desencadenando las siguientes acciones de respuesta:
 
 - **Análisis ELF:** Identificación de llamadas críticas de red (`bind`, `socket`, `accept`, etc.).
@@ -169,23 +196,39 @@ El EDR detectó exitosamente el binario del stager activo bajo el PID 7366, dese
 - **Resultado:** Calificación de 80/100 **ALTO** y penalización automática que sobrescribió la prioridad directamente a **CRÍTICA**.
 
 [2026-05-22 02:42:49] [ALERT] Proceso sospechoso: stager_sys [PID: 7366]
+
 [2026-05-22 02:42:49] [INFO] Calculando SHA256 de: /home/brandon/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2/build/stager_sys
+
 [2026-05-22 02:42:49] [INFO] SHA256: 6bd4a155e2a86e38ac37e010e0f51482cb14ca8fd2e230861a97d29cb9f7615b
+
 [2026-05-22 02:42:49] [INFO] Analizando ELF: /home/brandon/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2/build/stager_sys
+
 [ELF] Tipo: DYN (Shared object / PIE) | Secciones: 37
+
 [ELF] Simbolos importados relevantes: bind, socket, accept, send, listen
+
 [2026-05-22 02:42:49] [WARNING] Simbolos de red detectados en stager_sys
+
 [2026-05-22 02:42:49] [INFO] Ejecutando auditoria profunda en RAM para PID: 7366
+
 [*] [EDR] Iniciando escaneo heurístico de RAM en PID: 7366...
+
 [!!!] INCIDENTE CRÍTICO: Ejecución anómala detectada en RAM.
+
 -> Coordenada comprometida: 0x7f01318f06ef -> Patrón: EB FE (Loop Infinito)
+
 -> Coordenada comprometida: 0x7f013192d252 -> Patrón: EB FE (Loop Infinito)
+
 -> Coordenada comprometida: 0x7f0131aa8fcf -> Patrón: EB FE (Loop Infinito)
+
 -> Coordenada comprometida: 0x7f0131ca77ef -> Patrón: EB FE (Loop Infinito)
+
 -> Coordenada comprometida: 0x7f0131e831ef -> Patrón: EB FE (Loop Infinito)
+
 [2026-05-22 02:42:49] [ALERT] ¡ALERTA CRÍTICA! Infeccion Fileless detectada en RAM - PID: 7366
 
 || SCORE DE RIESGO: 80/100 [ALTO]
+
 || PENALIZACIÓN: Se sobrescribe prioridad a CRÍTICA por hallazgos en memoria viva.
 
 
