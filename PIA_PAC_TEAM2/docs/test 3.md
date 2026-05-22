@@ -59,6 +59,7 @@ Este binario actúa como el proceso legítimo del sistema operativo que recibir�
 **Salida esperada:**
 
 [TARGET] PID de la víctima: 7375
+
 [TARGET] Esperando interrupción... (Modo: Suspensión de hilos)
 
 
@@ -71,10 +72,15 @@ Simula el secuestro de un proceso (Process Hijacking) interrumpiendo el flujo de
 **Salida esperada:**
 
 [sudo] contraseña para brandon:
+
 [*] Iniciando secuestro del proceso: 7375
+
 [+] Proceso interceptado exitosamente.
+
 [+] RIP actual: 0x7fa84f29a687
+
 [+] Liberando proceso. El flujo de ejecución ha sido comprometido.
+
 [*] Presiona ENTER para finalizar el injector...
 
 
@@ -86,10 +92,10 @@ Demuestra una técnica educativa de evasión donde un proceso manipula su estruc
 
 **Salida esperada:**
 
-==========================================
+# ==========================================
 PIA PAC TEAM 2 - Spoof
 Entorno: VM Aislada (Linux)
-==========================================
+# ==========================================
 
 [] Este programa demuestra como un proceso puede
 [] falsear su propio nombre en /proc/self/comm.
