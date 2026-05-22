@@ -23,19 +23,28 @@ Este componente simula la apertura de un canal de comunicación benigno simuland
 
 ==========================================
 PIA PAC TEAM 2 - Stager Simulador
+
 Entorno: VM Aislada (Linux)
 ==========================================
 
 [] Este programa simula un stager benigno.
+
 [] Abre un socket TCP en 127.0.0.1:8080
+
 [] Solo escucha en localhost, no se conecta a ningun servidor externo.
+
 [] Capturable con Wireshark en la interfaz loopback (lo).
 
 [+] Socket abierto en 127.0.0.1:8080
+
 [+] Esperando conexiones (Ctrl+C para salir)...
+
 [] El monitor defensivo deberia detectar este proceso como 'stager'.
+
 ^C
+
 [] Cerrando socket...
+
 [+] Stager finalizado.
 
 
