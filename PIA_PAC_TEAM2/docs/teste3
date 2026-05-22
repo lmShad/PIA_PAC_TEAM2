@@ -1,4 +1,34 @@
-PIA PAC TEAM 2 - Guía de Ejecución y Pruebas del Simulador EDREste repositorio contiene las pruebas de concepto (PoC) y la simulación de técnicas de evasión, inyección de código y persistencia en un entorno Linux aislado, evaluadas mediante nuestro Monitor Defensivo (EDR Híbrido v2.0).Guía de Ejecución de ComponentesA continuación se detallan los pasos y las salidas de consola de cada uno de los binarios que forman parte de la simulación. Todos los binarios se compilan y ejecutan desde la ruta raíz del proyecto:~/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM21. Stager (stager_sys)Este componente simula la apertura de un canal de comunicación benigno simulando un stager malicioso. Abre un puerto local para interactuar de manera aislada.Comando: ./build/stager_sysCaracterísticas:Abre un socket TCP en 127.0.0.1:8080 (Localhost).No genera tráfico hacia el exterior.Capturable localmente mediante interfaces de red como Wireshark (lo).==========================================
+# PIA PAC TEAM 2 - Simulador EDR
+
+Simulador de Tecnicas de Evasion, Inyeccion y Persistencia en Linux
+
+Este repositorio contiene las pruebas de concepto (PoC) y la simulacion de tecnicas de evasion, inyeccion de codigo y persistencia en un entorno Linux aislado. Todas las actividades son evaluadas mediante nuestro Monitor Defensivo (EDR Hibrido v2.0).
+
+---
+
+## Guia de Ejecucion de Componentes
+
+Ruta base del proyecto:
+~/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2
+
+Todos los binarios se compilan y ejecutan desde esta ruta raiz.
+
+---
+
+### 1. Stager (stager_sys)
+
+Simula la apertura de un canal de comunicacion benigno (stager malicioso didactico). Abre un puerto local en modo loopback.
+
+Comando: ./build/stager_sys
+
+Caracteristicas:
+- Abre socket TCP en 127.0.0.1:8080 (solo localhost)
+- No genera trafico externo
+- Capturable con Wireshark en interfaz lo
+
+Salida esperada:
+
+==========================================
 PIA PAC TEAM 2 - Stager Simulador
 Entorno: VM Aislada (Linux)
 ==========================================
@@ -15,17 +45,49 @@ Entorno: VM Aislada (Linux)
 [*] Cerrando socket...
 [+] Stager finalizado.
 
-2. Víctima (target_sys)Este binario actúa como el proceso legítimo del sistema operativo que recibirá el impacto o la manipulación de flujos.Comando: ./build/target_sys[TARGET] PID de la víctima: 7375
-[TARGET] Esperando interrupción... (Modo: Suspensión de hilos)
+---
 
-3. Inyector (inject_sys)Simula el secuestro de un proceso (Process Hijacking) interrumpiendo el flujo de ejecución del target_sys mediante la lectura/modificación de registros del procesador (como el puntero de instrucciones RIP).Comando: sudo ./build/inject_sys <PID> (Requiere privilegios de administrador para interactuar con la memoria de otros procesos).[sudo] contraseña para brandon: 
+### 2. Victima (target_sys)
+
+Proceso legitimo que sera manipulado o interrumpido durante las pruebas de inyeccion.
+
+Comando: ./build/target_sys
+
+Salida esperada:
+
+[TARGET] PID de la victima: 7375
+[TARGET] Esperando interrupcion... (Modo: Suspension de hilos)
+
+Nota: El PID variara en cada ejecucion. Anotelo para usarlo con el inyector.
+
+---
+
+### 3. Inyector (inject_sys)
+
+Simula el secuestro de un proceso (Process Hijacking) modificando registros del CPU (RIP). Requiere privilegios de administrador.
+
+Comando: sudo ./build/inject_sys <PID>
+
+Salida esperada:
+
+[sudo] contrasena para brandon: 
 [*] Iniciando secuestro del proceso: 7375
 [+] Proceso interceptado exitosamente.
 [+] RIP actual: 0x7fa84f29a687
-[+] Liberando proceso. El flujo de ejecución ha sido comprometido.
+[+] Liberando proceso. El flujo de ejecucion ha sido comprometido.
 [*] Presiona ENTER para finalizar el injector...
 
-4. Spoofing de Proceso (spoof_sys)Demuestra una técnica educativa de evasión donde un proceso manipula su estructura en /proc/self/comm para enmascarar su nombre real frente a herramientas básicas de monitoreo.Comando: ./build/spoof_sys==========================================
+---
+
+### 4. Spoofing de Proceso (spoof_sys)
+
+Demuestra una tecnica educativa de evasion donde un proceso manipula su nombre en /proc/self/comm para enmascararse.
+
+Comando: ./build/spoof_sys
+
+Salida esperada:
+
+==========================================
 PIA PAC TEAM 2 - Spoof
 Entorno: VM Aislada (Linux)
 ==========================================
@@ -56,18 +118,41 @@ Entorno: VM Aislada (Linux)
 [+] Nombre restaurado a: spoof_sys
 [+] Spoof finalizado.
 
-Auditoría del Monitor Defensivo (simulador_sys)El Monitor Defensivo v2.0 (EDR Híbrido) realiza un análisis en dos fases: análisis estático (estructuras ELF, firmas SHA256, símbolos) y análisis dinámico profundo (escaneo heurístico de la memoria RAM).Comando: ./build/simulador_sysResumen del Análisis==========================================
+---
+
+## Auditoria del Monitor Defensivo (simulador_sys)
+
+El Monitor Defensivo v2.0 (EDR Hibrido) realiza analisis en dos fases: analisis estatico (estructuras ELF, firmas SHA256, simbolos) y analisis dinamico profundo (escaneo heuristico de memoria RAM).
+
+Comando: ./build/simulador_sys
+
+Resumen del Analisis:
+
+==========================================
 PIA PAC TEAM 2 - Monitor Defensivo v2.0
-EDR Híbrido: Estático + Dinámico (RAM)
+EDR Hibrido: Estatico + Dinamico (RAM)
 ==========================================
 
 [2026-05-22 02:42:49] [INFO] Monitor defensivo automatizado iniciado
-[2026-05-22 02:42:49] [INFO] Fase 1: Enumeración de procesos activos via /proc/
+[2026-05-22 02:42:49] [INFO] Fase 1: Enumeracion de procesos activos via /proc/
 [2026-05-22 02:42:49] [INFO] Procesos encontrados: 258
 [2026-05-22 02:42:49] [INFO] Fase 2: Filtrando procesos sospechosos...
 [2026-05-22 02:42:49] [ALERT] Se detectaron 6 proceso(s) sospechoso(s)
 
-Hallazgos Principales Detallados:Detección de Falsos Positivos del Sistema / Nombres Sospechosos:El EDR detectó procesos legítimos del kernel de Linux (migration, idle_inject) debido a que contienen patrones heurísticos de alerta preconfigurados (como rat o inject), asignándoles un riesgo de 45/100 $$MEDIO$$.(Nota: Al no correr el monitor con sudo, saltó un error esperado al intentar acceder a los descriptores de memoria RAM de estos procesos).Incidente Crítico - Infección Fileless (stager_sys):El EDR detectó exitosamente el binario del stager activo bajo el PID 7366, desencadenando las siguientes acciones de respuesta:Análisis ELF: Identificación de llamadas críticas de red (bind, socket, accept, etc.).Análisis de Memoria: Escaneo heurístico en vivo que localizó coordenadas comprometidas con bucles infinitos (EB FE), confirmando un comportamiento anómalo en la memoria viva.Resultado: Calificación de 80/100 $$ALTO$$ y penalización automática que sobrescribió la prioridad directamente a CRÍTICA.[2026-05-22 02:42:49] [ALERT] Proceso sospechoso: stager_sys [PID: 7366]
+Hallazgos Principales Detallados:
+
+Deteccion de Falsos Positivos del Sistema / Nombres Sospechosos:
+El EDR detecto procesos legitimos del kernel de Linux (migration, idle_inject) debido a que contienen patrones heuristicos de alerta preconfigurados (como rat o inject), asignandoles un riesgo de 45/100 MEDIO.
+(Nota: Al no correr el monitor con sudo, salto un error esperado al intentar acceder a los descriptores de memoria RAM de estos procesos).
+
+Incidente Critico - Infeccion Fileless (stager_sys):
+El EDR detecto exitosamente el binario del stager activo bajo el PID 7366, desencadenando las siguientes acciones de respuesta:
+
+Analisis ELF: Identificacion de llamadas criticas de red (bind, socket, accept, etc.).
+Analisis de Memoria: Escaneo heuristico en vivo que localizo coordenadas comprometidas con bucles infinitos (EB FE), confirmando un comportamiento anomalo en la memoria viva.
+Resultado: Calificacion de 80/100 ALTO y penalizacion automatica que sobrescribio la prioridad directamente a CRITICA.
+
+[2026-05-22 02:42:49] [ALERT] Proceso sospechoso: stager_sys [PID: 7366]
 [2026-05-22 02:42:49] [INFO] Calculando SHA256 de: /home/brandon/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2/build/stager_sys
 [2026-05-22 02:42:49] [INFO] SHA256: 6bd4a155e2a86e38ac37e010e0f51482cb14ca8fd2e230861a97d29cb9f7615b
 [2026-05-22 02:42:49] [INFO] Analizando ELF: /home/brandon/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2/build/stager_sys
@@ -75,16 +160,26 @@ Hallazgos Principales Detallados:Detección de Falsos Positivos del Sistema / No
 [ELF] Simbolos importados relevantes: bind, socket, accept, send, listen
 [2026-05-22 02:42:49] [WARNING] Simbolos de red detectados en stager_sys
 [2026-05-22 02:42:49] [INFO] Ejecutando auditoria profunda en RAM para PID: 7366
-[*] [EDR] Iniciando escaneo heurístico de RAM en PID: 7366...
-[!!!] INCIDENTE CRÍTICO: Ejecución anómala detectada en RAM.
-    -> Coordenada comprometida: 0x7f01318f06ef -> Patrón: EB FE (Loop Infinito)
-    -> Coordenada comprometida: 0x7f013192d252 -> Patrón: EB FE (Loop Infinito)
-    -> Coordenada comprometida: 0x7f0131aa8fcf -> Patrón: EB FE (Loop Infinito)
-    -> Coordenada comprometida: 0x7f0131ca77ef -> Patrón: EB FE (Loop Infinito)
-    -> Coordenada comprometida: 0x7f0131e831ef -> Patrón: EB FE (Loop Infinito)
-[2026-05-22 02:42:49] [ALERT] ¡ALERTA CRÍTICA! Infeccion Fileless detectada en RAM - PID: 7366
+[*] [EDR] Iniciando escaneo heuristico de RAM en PID: 7366...
+[!!!] INCIDENTE CRITICO: Ejecucion anomala detectada en RAM.
+    -> Coordenada comprometida: 0x7f01318f06ef -> Patron: EB FE (Loop Infinito)
+    -> Coordenada comprometida: 0x7f013192d252 -> Patron: EB FE (Loop Infinito)
+    -> Coordenada comprometida: 0x7f0131aa8fcf -> Patron: EB FE (Loop Infinito)
+    -> Coordenada comprometida: 0x7f0131ca77ef -> Patron: EB FE (Loop Infinito)
+    -> Coordenada comprometida: 0x7f0131e831ef -> Patron: EB FE (Loop Infinito)
+[2026-05-22 02:42:49] [ALERT] ALERTA CRITICA! Infeccion Fileless detectada en RAM - PID: 7366
 >>> SCORE DE RIESGO: 80/100 [ALTO]
->>> PENALIZACIÓN: Se sobrescribe prioridad a CRÍTICA por hallazgos en memoria viva.
+>>> PENALIZACION: Se sobrescribe prioridad a CRITICA por hallazgos en memoria viva.
 
-Resumen Forense FinalAl concluir la auditoría, el monitor exporta las métricas globales de telemetría y genera un archivo log persistente:MétricaResultadoProcesos Analizados258Alertas Generadas6Ruta del Loglogs/events.log[2026-05-22 02:42:49] [INFO] Monitor finalizado - 6 alerta(s) generada(s)
+---
 
+## Resumen Forense Final
+
+Al concluir la auditoria, el monitor exporta las metricas globales de telemetria y genera un archivo log persistente:
+
+Metrica                        Resultado
+Procesos Analizados            258
+Alertas Generadas              6
+Ruta del Log                   logs/events.log
+
+[2026-05-22 02:42:49] [INFO] Monitor finalizado - 6 alerta(s) generada(s)
