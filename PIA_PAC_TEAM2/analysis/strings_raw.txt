@@ -1,0 +1,84 @@
+/lib64/ld-linux-x86-64.so.2
+__gmon_start__
+_ITM_deregisterTMCloneTable
+_ITM_registerTMCloneTable
+_ZNSolsEi
+_ZNSolsEy
+_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+_ZSt24__throw_invalid_argumentPKc
+_ZSt3cin
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEC1EPKcRKS3_
+_ZNSolsEPFRSoS_E
+_ZSt4cerr
+_ZSt21ios_base_library_initv
+__gxx_personality_v0
+_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5c_strEv
+_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+_ZNSi3getEv
+_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEED1Ev
+_ZSt4cout
+_ZSt20__throw_out_of_rangePKc
+_ZNSolsEPFRSt8ios_baseS0_E
+_Unwind_Resume
+exit
+wait
+__isoc23_strtol
+ptrace
+__libc_start_main
+__cxa_finalize
+__errno_location
+libstdc++.so.6
+libgcc_s.so.1
+libc.so.6
+GCC_3.0
+CXXABI_1.3
+GLIBCXX_3.4.32
+GLIBCXX_3.4.21
+GLIBCXX_3.4
+GLIBC_2.38
+GLIBC_2.34
+GLIBC_2.2.5
+PTE1
+u+UH
+stoi
+Uso corporativo: 
+ <PID_OBJETIVO>
+[*] Iniciando secuestro del proceso: 
+[X] Fallo ptrace_attach. Verifique permisos YAMA.
+[+] Proceso interceptado exitosamente.
+[+] RIP actual: 0x
+[+] Liberando proceso. El flujo de ejecuci
+n ha sido comprometido.
+[*] Presiona ENTER para finalizar el injector...
+[!] Error de escritura en memoria. Violaci
+n de segmento.
+;*3$"
+zPLR
+GCC: (Debian 14.2.0-19) 14.2.0
+.shstrtab
+.note.gnu.property
+.note.gnu.build-id
+.interp
+.gnu.hash
+.dynsym
+.dynstr
+.gnu.version
+.gnu.version_r
+.rela.dyn
+.rela.plt
+.init
+.plt.got
+.text
+.fini
+.rodata
+.eh_frame_hdr
+.eh_frame
+.gcc_except_table
+.note.ABI-tag
+.init_array
+.fini_array
+.dynamic
+.got.plt
+.data
+.bss
+.comment
