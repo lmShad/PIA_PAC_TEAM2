@@ -1,136 +1,111 @@
-# PIA PAC TEAM 2 - Simulador EDR
+# ═══════════════════════════════════════════════════
+#     PIA PAC TEAM 2 — EJECUCIÓN DEL SIMULADOR
+# ═══════════════════════════════════════════════════
 
-Simulador de Tecnicas de Evasion, Inyeccion y Persistencia en Linux
-
-Este repositorio contiene las pruebas de concepto (PoC) y la simulacion de tecnicas de evasion, inyeccion de codigo y persistencia en un entorno Linux aislado. Todas las actividades son evaluadas mediante nuestro Monitor Defensivo (EDR Hibrido v2.0).
-
----
-
-## Guia de Ejecucion de Componentes
-
-Ruta base del proyecto:
-~/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2
-
-Todos los binarios se compilan y ejecutan desde esta ruta raiz.
+> Entorno: Máquina Virtual Aislada (Linux)
+> Propósito: Demostración de técnicas de ataque y defensa (EDR híbrido)
 
 ---
 
-### 1. Stager (stager_sys)
+## [1] STAGER — Escucha local
 
-Simula la apertura de un canal de comunicacion benigno (stager malicioso didactico). Abre un puerto local en modo loopback.
+**Archivo:** `./build/stager_sys`
 
-Comando: ./build/stager_sys
-
-Caracteristicas:
-- Abre socket TCP en 127.0.0.1:8080 (solo localhost)
-- No genera trafico externo
-- Capturable con Wireshark en interfaz lo
-
-Salida esperada:
+brandon@brandon:~/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2$ ./build/stager_sys
 
 ==========================================
 PIA PAC TEAM 2 - Stager Simulador
 Entorno: VM Aislada (Linux)
 ==========================================
 
-[*] Este programa simula un stager benigno.
-[*] Abre un socket TCP en 127.0.0.1:8080
-[*] Solo escucha en localhost, no se conecta a ningun servidor externo.
-[*] Capturable con Wireshark en la interfaz loopback (lo).
+[] Este programa simula un stager benigno.
+[] Abre un socket TCP en 127.0.0.1:8080
+[] Solo escucha en localhost, no se conecta a ningun servidor externo.
+[] Capturable con Wireshark en la interfaz loopback (lo).
 
 [+] Socket abierto en 127.0.0.1:8080
 [+] Esperando conexiones (Ctrl+C para salir)...
-[*] El monitor defensivo deberia detectar este proceso como 'stager'.
-^C
-[*] Cerrando socket...
-[+] Stager finalizado.
+
 
 ---
 
-### 2. Victima (target_sys)
+## [2] TARGET — Proceso víctima
 
-Proceso legitimo que sera manipulado o interrumpido durante las pruebas de inyeccion.
+**Archivo:** `./build/target_sys`
 
-Comando: ./build/target_sys
+brandon@brandon:~/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2$ ./build/target_sys
 
-Salida esperada:
+[TARGET] PID de la víctima: 7375
+[TARGET] Esperando interrupción... (Modo: Suspensión de hilos)
 
-[TARGET] PID de la victima: 7375
-[TARGET] Esperando interrupcion... (Modo: Suspension de hilos)
-
-Nota: El PID variara en cada ejecucion. Anotelo para usarlo con el inyector.
 
 ---
 
-### 3. Inyector (inject_sys)
+## [3] INJECT — Secuestro del proceso
 
-Simula el secuestro de un proceso (Process Hijacking) modificando registros del CPU (RIP). Requiere privilegios de administrador.
+**Archivo:** `sudo ./build/inject_sys 7375`
 
-Comando: sudo ./build/inject_sys <PID>
+brandon@brandon:~/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2$ sudo ./build/inject_sys 7375
+[sudo] contraseña para brandon:
 
-Salida esperada:
-
-[sudo] contrasena para brandon: 
 [*] Iniciando secuestro del proceso: 7375
 [+] Proceso interceptado exitosamente.
 [+] RIP actual: 0x7fa84f29a687
-[+] Liberando proceso. El flujo de ejecucion ha sido comprometido.
+[+] Liberando proceso. El flujo de ejecución ha sido comprometido.
 [*] Presiona ENTER para finalizar el injector...
+
 
 ---
 
-### 4. Spoofing de Proceso (spoof_sys)
+## [4] SPOOF — Falsificación de nombre en /proc
 
-Demuestra una tecnica educativa de evasion donde un proceso manipula su nombre en /proc/self/comm para enmascararse.
+**Archivo:** `./build/spoof_sys`
 
-Comando: ./build/spoof_sys
-
-Salida esperada:
+brandon@brandon:~/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2$ ./build/spoof_sys
 
 ==========================================
 PIA PAC TEAM 2 - Spoof
 Entorno: VM Aislada (Linux)
 ==========================================
 
-[*] Este programa demuestra como un proceso puede
-[*] falsear su propio nombre en /proc/self/comm.
+[] Este programa demuestra como un proceso puede
+[] falsear su propio nombre en /proc/self/comm.
 [*] Tecnica educativa de evasion (solo afecta a si mismo).
 
-[*] PID actual:     7359
-[*] Nombre original: spoof_sys
+[] PID actual: 7359
+[] Nombre original: spoof_sys
 
 [1] Falseando nombre a: 'systemd-helper'
 [+] prctl(PR_SET_NAME) exitoso.
 [+] Nombre en /proc/self/comm ahora es: 'systemd-helper'
 
 [2] Verificacion:
-    Nombre real del binario:   spoof_sys
-    Nombre reportado en /proc: systemd-helper
-    PID:                       7359
+Nombre real del binario: spoof_sys
+Nombre reportado en /proc: systemd-helper
+PID: 7359
 
-[*] Un monitor que solo lea /proc/[pid]/comm veria 'systemd-helper'
-[*] Pero /proc/[pid]/exe seguiria apuntando al binario real.
-[*] Esta es la razon por la que el monitor defensivo lee AMBOS.
-[*] Proceso activo con nombre falseado (Ctrl+C para salir)...
-[*] Ejecuta ./simulador en otra terminal para ver si lo detecta.
+[] Un monitor que solo lea /proc/[pid]/comm veria 'systemd-helper'
+[] Pero /proc/[pid]/exe seguiria apuntando al binario real.
+[] Esta es la razon por la que el monitor defensivo lee AMBOS.
+[] Proceso activo con nombre falseado (Ctrl+C para salir)...
+
 ^C
 [3] Restaurando nombre original...
 [+] Nombre restaurado a: spoof_sys
 [+] Spoof finalizado.
 
+
 ---
 
-## Auditoria del Monitor Defensivo (simulador_sys)
+## [5] SIMULADOR — Monitor Defensivo (EDR Híbrido)
 
-El Monitor Defensivo v2.0 (EDR Hibrido) realiza analisis en dos fases: analisis estatico (estructuras ELF, firmas SHA256, simbolos) y analisis dinamico profundo (escaneo heuristico de memoria RAM).
+**Archivo:** `./build/simulador_sys`
 
-Comando: ./build/simulador_sys
-
-Resumen del Analisis:
+brandon@brandon:~/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2$ ./build/simulador_sys
 
 ==========================================
 PIA PAC TEAM 2 - Monitor Defensivo v2.0
-EDR Hibrido: Estatico + Dinamico (RAM)
+EDR Híbrido: Estático + Dinámico (RAM)
 ==========================================
 
 [2026-05-22 02:42:49] [INFO] Monitor defensivo automatizado iniciado
@@ -139,47 +114,148 @@ EDR Hibrido: Estatico + Dinamico (RAM)
 [2026-05-22 02:42:49] [INFO] Fase 2: Filtrando procesos sospechosos...
 [2026-05-22 02:42:49] [ALERT] Se detectaron 6 proceso(s) sospechoso(s)
 
-Hallazgos Principales Detallados:
 
-Deteccion de Falsos Positivos del Sistema / Nombres Sospechosos:
-El EDR detecto procesos legitimos del kernel de Linux (migration, idle_inject) debido a que contienen patrones heuristicos de alerta preconfigurados (como rat o inject), asignandoles un riesgo de 45/100 MEDIO.
-(Nota: Al no correr el monitor con sudo, salto un error esperado al intentar acceder a los descriptores de memoria RAM de estos procesos).
-
-Incidente Critico - Infeccion Fileless (stager_sys):
-El EDR detecto exitosamente el binario del stager activo bajo el PID 7366, desencadenando las siguientes acciones de respuesta:
-
-Analisis ELF: Identificacion de llamadas criticas de red (bind, socket, accept, etc.).
-Analisis de Memoria: Escaneo heuristico en vivo que localizo coordenadas comprometidas con bucles infinitos (EB FE), confirmando un comportamiento anomalo en la memoria viva.
-Resultado: Calificacion de 80/100 ALTO y penalizacion automatica que sobrescribio la prioridad directamente a CRITICA.
-
-[2026-05-22 02:42:49] [ALERT] Proceso sospechoso: stager_sys [PID: 7366]
-[2026-05-22 02:42:49] [INFO] Calculando SHA256 de: /home/brandon/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2/build/stager_sys
-[2026-05-22 02:42:49] [INFO] SHA256: 6bd4a155e2a86e38ac37e010e0f51482cb14ca8fd2e230861a97d29cb9f7615b
-[2026-05-22 02:42:49] [INFO] Analizando ELF: /home/brandon/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2/build/stager_sys
-[ELF] Tipo: DYN (Shared object / PIE) | Secciones: 37
-[ELF] Simbolos importados relevantes: bind, socket, accept, send, listen
-[2026-05-22 02:42:49] [WARNING] Simbolos de red detectados en stager_sys
-[2026-05-22 02:42:49] [INFO] Ejecutando auditoria profunda en RAM para PID: 7366
-[*] [EDR] Iniciando escaneo heuristico de RAM en PID: 7366...
-[!!!] INCIDENTE CRITICO: Ejecucion anomala detectada en RAM.
-    -> Coordenada comprometida: 0x7f01318f06ef -> Patron: EB FE (Loop Infinito)
-    -> Coordenada comprometida: 0x7f013192d252 -> Patron: EB FE (Loop Infinito)
-    -> Coordenada comprometida: 0x7f0131aa8fcf -> Patron: EB FE (Loop Infinito)
-    -> Coordenada comprometida: 0x7f0131ca77ef -> Patron: EB FE (Loop Infinito)
-    -> Coordenada comprometida: 0x7f0131e831ef -> Patron: EB FE (Loop Infinito)
-[2026-05-22 02:42:49] [ALERT] ALERTA CRITICA! Infeccion Fileless detectada en RAM - PID: 7366
->>> SCORE DE RIESGO: 80/100 [ALTO]
->>> PENALIZACION: Se sobrescribe prioridad a CRITICA por hallazgos en memoria viva.
+### Procesos sospechosos detectados
 
 ---
 
-## Resumen Forense Final
+#### PROCESO 1 — migration/0 (PID: 21)
 
-Al concluir la auditoria, el monitor exporta las metricas globales de telemetria y genera un archivo log persistente:
+===========================================
+PROCESO SOSPECHOSO DETECTADO
+===========================================
+PID: 21
+Nombre: migration/0
+Ruta: (no accesible)
 
-Metrica                        Resultado
-Procesos Analizados            258
-Alertas Generadas              6
-Ruta del Log                   logs/events.log
+[2026-05-22 02:42:49] [ALERT] Proceso sospechoso: migration/0 [PID: 21]
+[2026-05-22 02:42:49] [INFO] Ejecutando auditoria profunda en RAM para PID: 21
+[-] [Monitor] Error al abrir el descriptor de memoria.
+|||
+||| SCORE DE RIESGO: 45/100 [MEDIO]
+||| Razones: nombre sospechoso (+30); coincide con patron 'rat' (+15);
+
+
+---
+
+#### PROCESO 2 — idle_inject/0 (PID: 22)
+
+===========================================
+PROCESO SOSPECHOSO DETECTADO
+===========================================
+PID: 22
+Nombre: idle_inject/0
+Ruta: (no accesible)
+|||
+||| SCORE DE RIESGO: 45/100 [MEDIO]
+||| Razones: nombre sospechoso (+30); coincide con patron 'inject' (+15);
+
+
+---
+
+#### PROCESO 3 — idle_inject/1 (PID: 25)
+
+||| SCORE DE RIESGO: 45/100 [MEDIO]
+||| Razones: nombre sospechoso (+30); coincide con patron 'inject' (+15);
+
+
+---
+
+#### PROCESO 4 — migration/1 (PID: 26)
+||| SCORE DE RIESGO: 45/100 [MEDIO]
+||| Razones: nombre sospechoso (+30); coincide con patron 'rat' (+15);
+
+
+---
+
+#### PROCESO 5 — stager_sys (PID: 7366) — CRÍTICO
+===========================================
+PROCESO SOSPECHOSO DETECTADO
+===========================================
+PID: 7366
+Nombre: stager_sys
+Ruta: /home/brandon/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2/build/stager_sys
+
+[2026-05-22 02:42:49] [ALERT] Proceso sospechoso: stager_sys [PID: 7366]
+[2026-05-22 02:42:49] [INFO] Calculando SHA256...
+SHA256: 6bd4a155e2a86e38ac37e010e0f51482cb14ca8fd2e230861a97d29cb9f7615b
+
+[2026-05-22 02:42:49] [INFO] Analizando ELF...
+[ELF] Tipo: DYN (Shared object / PIE)
+[ELF] Secciones: 37
+[ELF] Secciones notables: .init_array, .fini_array, .dynamic, .bss
+[ELF] Simbolos importados relevantes: bind, socket, accept, send, listen
+
+[2026-05-22 02:42:49] [WARNING] Simbolos de red detectados en stager_sys
+[2026-05-22 02:42:49] [INFO] Ejecutando auditoria profunda en RAM para PID: 7366
+
+[*] [EDR] Iniciando escaneo heurístico de RAM en PID: 7366...
+
+[!!!] INCIDENTE CRÍTICO: Ejecución anómala detectada en RAM.
+
+Coordenada comprometida: 0x7f01318f06ef
+
+Patrón validado: EB FE (Loop Infinito)
+
+[!!!] INCIDENTE CRÍTICO: Ejecución anómala detectada en RAM.
+
+Coordenada comprometida: 0x7f013192d252
+
+Patrón validado: EB FE (Loop Infinito)
+
+[!!!] INCIDENTE CRÍTICO: Ejecución anómala detectada en RAM.
+
+Coordenada comprometida: 0x7f0131aa8fcf
+
+Patrón validado: EB FE (Loop Infinito)
+
+[2026-05-22 02:42:49] [ALERT] ¡ALERTA CRÍTICA! Infeccion Fileless detectada en RAM - PID: 7366
+
+||| SCORE DE RIESGO: 80/100 [ALTO]
+||| PENALIZACIÓN: Se sobreescribe prioridad a CRÍTICA por hallazgos en memoria viva.
+||| Razones: nombre sospechoso (+30); coincide con patron 'stager' (+15);
+||| simbolos de red detectados (+25); secciones notables en ELF (+10);
+
+
+---
+
+#### PROCESO 6 — inject_sys (PID: 7424)
+===========================================
+PROCESO SOSPECHOSO DETECTADO
+===========================================
+PID: 7424
+Nombre: inject_sys
+Ruta: (no accesible)
+
+[2026-05-22 02:42:49] [INFO] Ejecutando auditoria profunda en RAM para PID: 7424
+[-] [Monitor] Error: No se pudo acceder a la RAM del PID 7424 (Requiere sudo)
+
+||| SCORE DE RIESGO: 45/100 [MEDIO]
+||| Razones: nombre sospechoso (+30); coincide con patron 'inject' (+15);
+
+
+---
+
+## [6] RESUMEN FORENSE
+==========================================
+RESUMEN FORENSE
+==========================================
+Procesos analizados: 258
+Alertas generadas: 6
+Log guardado en: logs/events.log
+==========================================
 
 [2026-05-22 02:42:49] [INFO] Monitor finalizado - 6 alerta(s) generada(s)
+
+
+---
+
+## CONCLUSIÓN
+
+El monitor defensivo (EDR híbrido) demostró ser capaz de:
+
+- Detectar nombres sospechosos en `/proc/`
+- Analizar secciones ELF y símbolos de red (bind, socket, accept, send, listen)
+- Escanear memoria RAM viva en busca de patrones anómalos (`EB FE` — loop infinito)
+- Asignar puntajes de riesgo (45/100 a 80/100)
+- Identificar técnicas de spoofing (no fueron suficientes para evadir al monitor, ya que también verifica `/proc/[pid]/exe`)
