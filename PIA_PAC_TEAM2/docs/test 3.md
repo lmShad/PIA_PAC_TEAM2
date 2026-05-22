@@ -50,6 +50,7 @@ Este componente simula la apertura de un canal de comunicación benigno simuland
 [+] Stager finalizado.
 
 
+
 ### 2. Víctima (`target_sys`)
 
 Este binario actúa como el proceso legítimo del sistema operativo que recibirá el impacto o la manipulación de flujos.
@@ -61,6 +62,7 @@ Este binario actúa como el proceso legítimo del sistema operativo que recibir�
 [TARGET] PID de la víctima: 7375
 
 [TARGET] Esperando interrupción... (Modo: Suspensión de hilos)
+
 
 
 ### 3. Inyector (`inject_sys`)
@@ -84,6 +86,7 @@ Simula el secuestro de un proceso (Process Hijacking) interrumpiendo el flujo de
 [*] Presiona ENTER para finalizar el injector...
 
 
+
 ### 4. Spoofing de Proceso (`spoof_sys`)
 
 Demuestra una técnica educativa de evasión donde un proceso manipula su estructura en `/proc/self/comm` para enmascarar su nombre real frente a herramientas básicas de monitoreo.
@@ -92,14 +95,21 @@ Demuestra una técnica educativa de evasión donde un proceso manipula su estruc
 
 **Salida esperada:**
 
-# ==========================================
-PIA PAC TEAM 2 - Spoof
-Entorno: VM Aislada (Linux)
-# ==========================================
+
+# -----------------------------------------
+
+# PIA PAC TEAM 2 - Spoof
+
+# Entorno: VM Aislada (Linux)
+
+# -----------------------------------------
 
 [] Este programa demuestra como un proceso puede
+
 [] falsear su propio nombre en /proc/self/comm.
+
 [*] Tecnica educativa de evasion (solo afecta a si mismo).
+
 
 [] PID actual: 7359
 [] Nombre original: spoof_sys
