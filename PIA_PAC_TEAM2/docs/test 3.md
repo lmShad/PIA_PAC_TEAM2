@@ -22,11 +22,8 @@ Este componente simula la apertura de un canal de comunicación benigno simuland
 **Salida esperada:**
 
 ==========================================
-
-PIA PAC TEAM 2 - Stager Simulador
-
+PIA PAC TEAM 2 - Stager Simulador  
 Entorno: VM Aislada (Linux)
-
 ==========================================
 
 [] Este programa simula un stager benigno.
