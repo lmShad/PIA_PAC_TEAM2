@@ -164,3 +164,100 @@ Ruta: (no accesible)
 #### PROCESO 4 — migration/1 (PID: 26)
 ||| SCORE DE RIESGO: 45/100 [MEDIO]
 ||| Razones: nombre sospechoso (+30); coincide con patron 'rat' (+15);
+
+
+---
+
+#### PROCESO 5 — stager_sys (PID: 7366) — CRÍTICO
+===========================================
+PROCESO SOSPECHOSO DETECTADO
+===========================================
+PID: 7366
+Nombre: stager_sys
+Ruta: /home/brandon/Escritorio/PIA_PAC_TEAM2-main/PIA_PAC_TEAM2/build/stager_sys
+
+[2026-05-22 02:42:49] [ALERT] Proceso sospechoso: stager_sys [PID: 7366]
+[2026-05-22 02:42:49] [INFO] Calculando SHA256...
+SHA256: 6bd4a155e2a86e38ac37e010e0f51482cb14ca8fd2e230861a97d29cb9f7615b
+
+[2026-05-22 02:42:49] [INFO] Analizando ELF...
+[ELF] Tipo: DYN (Shared object / PIE)
+[ELF] Secciones: 37
+[ELF] Secciones notables: .init_array, .fini_array, .dynamic, .bss
+[ELF] Simbolos importados relevantes: bind, socket, accept, send, listen
+
+[2026-05-22 02:42:49] [WARNING] Simbolos de red detectados en stager_sys
+[2026-05-22 02:42:49] [INFO] Ejecutando auditoria profunda en RAM para PID: 7366
+
+[*] [EDR] Iniciando escaneo heurístico de RAM en PID: 7366...
+
+[!!!] INCIDENTE CRÍTICO: Ejecución anómala detectada en RAM.
+
+Coordenada comprometida: 0x7f01318f06ef
+
+Patrón validado: EB FE (Loop Infinito)
+
+[!!!] INCIDENTE CRÍTICO: Ejecución anómala detectada en RAM.
+
+Coordenada comprometida: 0x7f013192d252
+
+Patrón validado: EB FE (Loop Infinito)
+
+[!!!] INCIDENTE CRÍTICO: Ejecución anómala detectada en RAM.
+
+Coordenada comprometida: 0x7f0131aa8fcf
+
+Patrón validado: EB FE (Loop Infinito)
+
+[2026-05-22 02:42:49] [ALERT] ¡ALERTA CRÍTICA! Infeccion Fileless detectada en RAM - PID: 7366
+
+||| SCORE DE RIESGO: 80/100 [ALTO]
+||| PENALIZACIÓN: Se sobreescribe prioridad a CRÍTICA por hallazgos en memoria viva.
+||| Razones: nombre sospechoso (+30); coincide con patron 'stager' (+15);
+||| simbolos de red detectados (+25); secciones notables en ELF (+10);
+
+
+---
+
+#### PROCESO 6 — inject_sys (PID: 7424)
+===========================================
+PROCESO SOSPECHOSO DETECTADO
+===========================================
+PID: 7424
+Nombre: inject_sys
+Ruta: (no accesible)
+
+[2026-05-22 02:42:49] [INFO] Ejecutando auditoria profunda en RAM para PID: 7424
+[-] [Monitor] Error: No se pudo acceder a la RAM del PID 7424 (Requiere sudo)
+
+||| SCORE DE RIESGO: 45/100 [MEDIO]
+||| Razones: nombre sospechoso (+30); coincide con patron 'inject' (+15);
+
+
+---
+
+## [6] RESUMEN FORENSE
+==========================================
+RESUMEN FORENSE
+==========================================
+Procesos analizados: 258
+Alertas generadas: 6
+Log guardado en: logs/events.log
+==========================================
+
+[2026-05-22 02:42:49] [INFO] Monitor finalizado - 6 alerta(s) generada(s)
+
+
+---
+
+## CONCLUSIÓN
+
+El monitor defensivo (EDR híbrido) demostró ser capaz de:
+
+- Detectar nombres sospechosos en `/proc/`
+- Analizar secciones ELF y símbolos de red (bind, socket, accept, send, listen)
+- Escanear memoria RAM viva en busca de patrones anómalos (`EB FE` — loop infinito)
+- Asignar puntajes de riesgo (45/100 a 80/100)
+- Identificar técnicas de spoofing (no fueron suficientes para evadir al monitor, ya que también verifica `/proc/[pid]/exe`)
+
+
