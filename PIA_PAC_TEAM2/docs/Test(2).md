@@ -1,6 +1,6 @@
-# ═══════════════════════════════════════════════════
-#     PIA PAC TEAM 2 — EJECUCIÓN DEL SIMULADOR
-# ═══════════════════════════════════════════════════
+# ═══════════════════════════════════════════════
+#    PIA PAC TEAM 2 — EJECUCIÓN DEL SIMULADOR
+# ═══════════════════════════════════════════════
 
 > Entorno: Máquina Virtual Aislada (Linux)
 > Propósito: Demostración de técnicas de ataque y defensa (EDR híbrido)
