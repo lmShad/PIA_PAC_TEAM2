@@ -162,7 +162,7 @@ El EDR detectó exitosamente el binario del stager activo bajo el PID 7366, dese
 || PENALIZACIÓN: Se sobrescribe prioridad a CRÍTICA por hallazgos en memoria viva.
 
 
-## 📊 Resumen Forense Final
+## Resumen Forense Final
 
 Al concluir la auditoría, el monitor exporta las métricas globales de telemetría y genera un archivo log persistente:
 
