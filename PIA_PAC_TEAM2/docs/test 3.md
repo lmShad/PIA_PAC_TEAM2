@@ -160,13 +160,13 @@ El Monitor Defensivo v2.0 (EDR Híbrido) realiza un análisis en dos fases: aná
 
 ### Resumen del Análisis
 
-# ----------------------------------------------
+# ------------------------------------------------
 
 # PIA PAC TEAM 2 - Monitor Defensivo v2.0
 
 # EDR Híbrido: Estático + Dinámico (RAM)
 
-# ----------------------------------------------
+# ------------------------------------------------
 
 [2026-05-22 02:42:49] [INFO] Monitor defensivo automatizado iniciado
 
