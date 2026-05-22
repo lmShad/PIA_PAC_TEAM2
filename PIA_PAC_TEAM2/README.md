@@ -1,152 +1,194 @@
 # Monitor y Simulador Benigno de Comportamiento
-Producto Integrador de Aprendizaje | Equipo 2
 
-
-Integrantes:
-
--Brandon Yahir Flores Garcia
-
--Jonathan Emir Jacobo Martinez
-
--Jose Miguel Castellanos Martinez
-
--Juan Carlos Fernandez Flores
+**Producto Integrador de Aprendizaje (PIA) | Equipo 2**
 
 ---
 
-## Objetivo del proyecto
+## Integrantes
 
-Desarrollar un sistema modular en C++ para Linux compuesto de dos partes: un monitor
-defensivo que detecta comportamiento sospechoso en tiempo real, y un conjunto de
-simuladores ofensivos benignos que generan ese comportamiento de forma controlada.
-Ambas partes se analizan con herramientas de ingeniería inversa, demostrando dominio
-de las Fases I–IV del curso.
-
-
+- Brandon Yahir Flores Garcia
+- Jonathan Emir Jacobo Martinez
+- Jose Miguel Castellanos Martinez
+- Juan Carlos Fernandez Flores
 
 ---
 
-## Descripción técnica del componente educativo
+## Objetivo del Proyecto
 
-El proyecto se divide en dos componentes que trabajan juntos:
+Desarrollar un sistema modular en C++ para Linux compuesto de dos componentes integrados:
 
-### Monitor defensivo (`simulador`)
-Programa principal que corre en una terminal y detecta en tiempo real:
-- **Enumeración de procesos** — lee /proc/[pid]/comm y /proc/[pid]/exe
-  para obtener procesos activos y marcar los sospechosos.
-- **Análisis ELF estático** — inspecciona headers, secciones y símbolos
-  importados del binario de cada proceso detectado.
-- **Hashing SHA256** — calcula hash de ejecutables con OpenSSL para
-  identificación por IOC.
-- **Scoring de riesgo** — correlaciona indicadores y genera un puntaje
-  0–100 con nivel BAJO / MEDIO / ALTO.
-- **Logger** — registra todos los eventos en logs/events.log.
+1. **Monitor defensivo** — Detecta comportamiento sospechoso en tiempo real mediante análisis de procesos, ELF estático y scoring de riesgo.
+2. **Simuladores ofensivos benignos** — Generan comportamiento malicioso controlado para demostrar el funcionamiento del monitor.
 
-### Simuladores ofensivos (programas separados)
-Programas cortos que se ejecutan en otra terminal y generan comportamiento
-que el monitor detecta:
-- **stager** — abre socket TCP a 127.0.0.1:8080
-- **inject_sim** — demo benigna de asignación y ejecución de memoria
-  (mmap, memcpy), equivalente Linux al ejercicio de VirtualAlloc.
-- **spoof_demo** — falsea metadatos de proceso (nombre en /proc/self/comm)
-  para demostrar técnicas de evasión de forma educativa.
-
-### Flujo de demostración
-```
-Terminal 1: ./stager        → simula comportamiento sospechoso
-Terminal 2: ./simulador     → detecta al stager, calcula hash, genera alerta
-Terminal 3: wireshark       → captura tráfico del stager en localhost
-```
+Despues de tener los procesos sospechosos de la parte defensiva, el componente ofensivo se analizan con herramientas de ingeniería inversa, demostrando dominio de las Fases I–IV del curso: análisis de procesos, ingeniería inversa estática, análisis dinámico y auditoría de seguridad.
+El
 
 ---
 
-## Alcance y límites
+## Componentes Principales
 
-| Sí implementará | No implementará |
-|-----------------|----------------|
-| Enumeración de procesos vía /proc/ | Persistencia en el sistema |
-| Análisis  estático | Exfiltración de datos al exterior |
-| Hash SHA256 con OpenSSL | Cifrado o destrucción de archivos |
-| Detección de comportamiento sospechoso | Conexión a servidores externos |
-| Simuladores ofensivos benignos | Modificación de procesos ajenos |
-| Scoring de riesgo | Escalación de privilegios real |
-| Log de eventos con timestamp | Evasión de antivirus reales |
+### Monitor Defensivo (`simulador`)
+Programa que corre en una terminal y detecta en tiempo real:
+- **Enumeración de procesos** — Lee y obtiene procesos activos.
+- **Análisis ELF estático** — Inspecciona headers, secciones y símbolos importados del binario de cada proceso.
+- **Hashing SHA256** — Calcula hash de ejecutables con OpenSSL para identificación por IOCs.
+- **Scoring de riesgo** — Correlaciona indicadores y genera un puntaje 0–100 con nivel BAJO / MEDIO / ALTO.
+- **Logger** — Registra todos los eventos en logs/events.log con timestamp.
 
----
-
-## Cómo compilar
-
-Requiere: g++, libssl-dev. 
-
-En Debian/Ubuntu:
-
-```bash
-sudo apt install g++ libssl-dev
-make
-```
-
-O manualmente:
-
-```bash
-mkdir -p build && g++ -std=c++11 -o build/simulador src/main.cpp src/enumerator.cpp src/elf_analyzer.cpp src/hash_engine.cpp src/scorer.cpp src/logger.cpp -lssl -lcrypto
-```
-
-**Cómo ejecutar:**
-
-```bash
-./build/simulador
-```
-
----
-
-## Estructura del proyecto
-
-```
-PIA_PAC_TEAM2/
- ├── src/
- │    ├── main.cpp           # Orquestador del monitor
- │    ├── enumerator.cpp/h   # Enumeración de procesos /proc/
- │    ├── elf_analyzer.cpp/h # Análisis estático ELF
- │    ├── hash_engine.cpp/h  # SHA256 con OpenSSL
- │    ├── scorer.cpp/h       # Scoring de riesgo
- │    ├── logger.cpp/h       # Log con timestamp
- │    ├── stager.cpp         # Simulador: socket localhost
- │    ├── inject_sim.cpp     # Simulador: inyección benigna
- │    └── spoof_demo.cpp     # Simulador: spoofing de metadatos
- ├── docs/
- │    └── design.md          # Diseño técnico
- ├── evidence/
- │    └── *.png              # Capturas de VM y ejecución
- ├── logs/
- │    └── events.log         # Generado al ejecutar
- ├── Makefile                # Build system
- └── README.md
-```
-
----
-
-## Integrantes y responsabilidades técnicas
-
-| Integrante | Módulo | Descripción |
-|------------|--------|-------------|
-| Jonathan | main.cpp, enumerator.cpp | Core del monitor, enumeración de procesos vía /proc/ |
-| José | elf_analyzer.cpp, hash_engine.cpp | Análisis estático de binarios ELF y hashing SHA256 |
-| Brandon | stager.cpp, inject_sim.cpp | Simuladores ofensivos: socket localhost e inyección benigna |
-| Carlos | scorer.cpp, logger.cpp, spoof_demo.cpp | Scoring de riesgo, logging y tema de spoofing |
+### Simuladores Ofensivos
+Programas independientes que generan comportamiento detectado por el monitor:
+- **stager** — Abre socket TCP a 127.0.0.1:8080, simula comportamiento de comando y control.
+- **inject** — Inyecta código arbitrario en procesos víctima usando ptrace, demuestra process hijacking.
+- **spoof** — Falsea metadatos de proceso (/proc/self/comm), demuestra técnicas de evasión.
+- **target** — Proceso víctima para ser inyectado o analizado.
 
 ---
 
 ## Dependencias
 
-| Dependencia | Uso |
-|-------------|-----|
-| g++ (C++11) | Compilador |
-| libssl-dev / OpenSSL | Hash SHA256 |
-| POSIX (dirent.h, unistd.h`) | Lectura de /proc/` |
-| sys/socket.h | Stager localhost |
-| Ghidra / Radare2 / GDB | Análisis externo|
-| Wireshark | Sniffing del tráfico del stager |
+**Sistema operativo:** Linux x64 (Ubuntu 20.04+, Debian 11+)
+
+**Herramientas de compilación:**
+- g++ (GCC 9+)
+- make
+- libssl-dev (OpenSSL development headers)
+
+**Herramientas de análisis (opcionales):**
+- Ghidra
+
+
+**Instalación en Debian/Ubuntu:**
+
+```bash
+sudo apt update
+sudo apt install build-essential g++ make libssl-dev
+```
 
 ---
 
+## Cómo Compilar
+
+**Comando exacto:**
+
+```bash
+make clean && make all
+```
+
+Esto compila:
+- Monitor defensivo: `build/simulador_raw`, `build/simulador_sys`
+- Stager: `build/stager_raw`, `build/stager_sys`
+- Inyector: `build/inject_raw`, `build/inject_sys`
+- Spoof: `build/spoof_raw`, `build/spoof_sys`
+- Target: `build/target_raw`, `build/target_sys`
+
+**Nota:** Los binarios con sufijo `_raw` están stripeados (sin símbolos), ideal para análisis de ingeniería inversa. Los con sufijo `_sys` mantienen símbolos de debug.
+
+---
+
+## Cómo Ejecutar
+
+### Flujo de demostración básico (5 terminales):
+
+
+
+**Terminal 1 — Simulador Ofensivo (Stager):**
+```bash
+./build/stager_sys
+```
+Abre un socket TCP en `127.0.0.1:8080` y genera comportamiento sospechoso.
+
+
+### Flujo avanzado (Inyección de procesos):
+
+**Terminal 2 — Target (víctima):**
+```bash
+./build/target_sys
+```
+
+**Terminal 3 — Inyector (requiere sudo):**
+```bash
+sudo ./build/inject_sys <PID_del_target>
+```
+
+
+### Flujo con Spoof (falsificación de metadatos):
+**Terminal 4 —:**
+
+```bash
+./build/spoof_sys
+```
+
+**Terminal 5  — Monitor Defensivo:**
+```bash
+./build/simulador_sys
+```
+Ejecuta el monitor de procesos para detectar procesos sospechosos
+
+---
+
+
+---
+
+## Estructura del Proyecto
+
+```
+PIA_PAC_TEAM2/
+├── Makefile                    # Configuración de compilación
+├── README.md                   # Este archivo
+├── src/
+│   ├── main.cpp               # Orquestador del monitor
+│   ├── enumerator.cpp/.h      # Enumeración de procesos
+│   ├── elf_analyzer.cpp/.h    # Análisis estático ELF
+│   ├── hash_engine.cpp/.h     # SHA256 con OpenSSL
+│   ├── scorer.cpp/.h          # Scoring de riesgo
+│   ├── logger.cpp/.h          # Logging con timestamp
+│   ├── ptrace_ops.cpp/.hpp    # Operaciones ptrace
+│   ├── injector_main.cpp      # Orquestador del inyector
+│   ├── stager.cpp             # Simulador stager
+│   ├── spoof.cpp              # Simulador spoof
+│   └── target.cpp             # Proceso víctima
+├── build/                      # Binarios compilados
+│   ├── simulador_raw/.sys
+│   ├── stager_raw/.sys
+│   ├── inject_raw/.sys
+│   ├── spoof_raw/.sys
+│   └── target_raw/.sys
+├── logs/                       # Logs de ejecución (events.log)
+├── docs/
+│   ├── design.md              # Arquitectura técnica
+│   ├── test.md                # Pruebas realizadas
+│   └── reporte_draft.md       # Hallazgos iniciales
+└── evidence/                   # Capturas de pantalla y evidencias
+```
+
+---
+
+## Alcance y Límites
+
+| Sí implementará | No implementará |
+|---|---|
+| Enumeración de procesos vía /proc/ | Persistencia en el sistema |
+| Análisis estático de binarios ELF | Exfiltración de datos al exterior |
+| Hashing SHA256 de ejecutables | Cifrado o destrucción de archivos |
+| Detección de comportamiento sospechoso | Conexión a servidores externos |
+| Simuladores ofensivos benignos | Modificación de procesos ajenos (sin consentimiento) |
+| Scoring de riesgo correlacionado | Escalación de privilegios real |
+| Logging de eventos con timestamp | Evasión de antivirus reales |
+| Análisis con herramientas estándar | Técnicas de kernel exploitation |
+
+---
+
+## Recursos
+
+- **Reporte Final:** [Enlace al reporte completo](#)
+- **Video de Demostración:** [Enlace al video de demostración](#)
+
+---
+
+## Notas Importantes
+
+
+- Se ejecuta en Linux x64; no soporta otras arquitecturas en esta versión.
+
+---
 
