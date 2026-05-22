@@ -1,6 +1,6 @@
-# ═══════════════════════════════════════════════
-#    PIA PAC TEAM 2 — EJECUCIÓN DEL SIMULADOR
-# ═══════════════════════════════════════════════
+# ═══════════════════════════════════════════════════
+#     PIA PAC TEAM 2 — EJECUCIÓN DEL SIMULADOR
+# ═══════════════════════════════════════════════════
 
 > Entorno: Máquina Virtual Aislada (Linux)
 > Propósito: Demostración de técnicas de ataque y defensa (EDR híbrido)
@@ -150,6 +150,17 @@ Ruta: (no accesible)
 ||| SCORE DE RIESGO: 45/100 [MEDIO]
 ||| Razones: nombre sospechoso (+30); coincide con patron 'inject' (+15);
 
-[] El monitor defensivo deberia detectar este proceso como 'stager'.
-[] Cerrando socket...
-[+] Stager finalizado.
+
+---
+
+#### PROCESO 3 — idle_inject/1 (PID: 25)
+
+||| SCORE DE RIESGO: 45/100 [MEDIO]
+||| Razones: nombre sospechoso (+30); coincide con patron 'inject' (+15);
+
+
+---
+
+#### PROCESO 4 — migration/1 (PID: 26)
+||| SCORE DE RIESGO: 45/100 [MEDIO]
+||| Razones: nombre sospechoso (+30); coincide con patron 'rat' (+15);
